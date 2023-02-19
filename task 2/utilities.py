@@ -1,16 +1,15 @@
 import variables
 
 def calc_two_num(a, b, operation):
-    global mul
     res = 0
     
-    if (operation == variables.mul):
+    if (operation == variables.MUL):
         return a*b
-    elif (operation == variables.div):
+    elif (operation == variables.DIV):
         return a/b
-    elif (operation == variables.sub):
+    elif (operation == variables.SUB):
         return a-b
-    elif (operation == variables.sum):
+    elif (operation == variables.SUM):
         return a+b
     else:
         raise Exception("Incorrect operation name")
