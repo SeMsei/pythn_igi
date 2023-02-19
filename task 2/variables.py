@@ -1,4 +1,4 @@
-div = "div"
-mul = "mul"
-sum = "sum"
-sub = "sub"
+DIV = "div"
+MUL = "mul"
+SUM = "sum"
+SUB = "sub"
