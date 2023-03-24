@@ -3,10 +3,11 @@ import UniqueContainer
 class CLI:
     def __init__(self):
         self.cont = UniqueContainer.UniqueContainer()
-        self.user = input("Enter user name: ")
-        self.cont.switch(self.user)
+        self.user = ''
         
     def start(self):
+        self.user = 'input("Enter user name: ")'
+        self.cont.switch(self.user)
         while (True):
             option = input("List of all option:\n\
                             \r0 - exit\n \
