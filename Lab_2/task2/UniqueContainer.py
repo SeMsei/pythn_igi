@@ -3,13 +3,13 @@ import os
 
 class UniqueContainer:
     def __init__(self):
-        print(os.getcwd())
+        os.chdir('/home/denis/Documents/Study/pythn_igi/Lab_2/task2')
         self.container = set()
         self.usernames_list = set()
         self.cur_user = ''
         self.all_users = dict()
         try:
-            with open('task2/info.txt', 'r') as f:
+            with open('info.txt', 'r') as f:
                 tmp_list = list(f.readlines())
                 
                 for i in range(0, len(tmp_list)):
@@ -42,12 +42,12 @@ class UniqueContainer:
                 
     def __save_list(self):
         try:
-            with open('task2/info.txt', 'r+') as f:
+            with open('info.txt', 'r+') as f:
                 f.truncate()
         except:
             pass
             
-        with open('task2/info.txt', 'w+') as f:
+        with open('info.txt', 'w+') as f:
             for tmp_user in self.all_users:
                 tmp_list = [tmp_user]
                 
