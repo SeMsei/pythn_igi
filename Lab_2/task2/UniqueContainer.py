@@ -3,12 +3,13 @@ import os
 
 class UniqueContainer:
     def __init__(self):
+        print(os.getcwd())
         self.container = set()
         self.usernames_list = set()
         self.cur_user = ''
         self.all_users = dict()
         try:
-            with open('Lab_2/task2/info.txt', 'r') as f:
+            with open('task2/info.txt', 'r') as f:
                 tmp_list = list(f.readlines())
                 
                 for i in range(0, len(tmp_list)):
@@ -41,12 +42,12 @@ class UniqueContainer:
                 
     def __save_list(self):
         try:
-            with open('Lab_2/task2/info.txt', 'r+') as f:
+            with open('task2/info.txt', 'r+') as f:
                 f.truncate()
         except:
             pass
             
-        with open('Lab_2/task2/info.txt', 'w+') as f:
+        with open('task2/info.txt', 'w+') as f:
             for tmp_user in self.all_users:
                 tmp_list = [tmp_user]
                 
@@ -68,7 +69,10 @@ class UniqueContainer:
         self.__save_list()
             
     def remove(self, key):
-        self.all_users[self.cur_user].remove(key)
+        try:
+            self.all_users[self.cur_user].remove(key)
+        except:
+            print('No such element')
         
         self.__save_list()
         
@@ -92,12 +96,16 @@ class UniqueContainer:
             print("No such elements")
             
     def save(self, file_name):
+        print(file_name)
+        
         try:
-            with open(file_name, "w") as f:
+            with open(file_name, "w+") as f:
+                tmp_str = ''
                 for item in self.all_users[self.cur_user]:
-                    f.write(f'{item}')
-                    if (item != self.all_users[self.cur_user][-1]):
-                        f.write(' ')
+                    tmp_str += item + ' '
+                
+                tmp_str = tmp_str[:-1]
+                f.write(tmp_str)
         except:
             print('file not found')
         

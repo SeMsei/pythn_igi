@@ -6,7 +6,7 @@ class CLI:
         self.user = ''
         
     def start(self):
-        self.user = 'input("Enter user name: ")'
+        self.user = input('input("Enter user name: ')
         self.cont.switch(self.user)
         while (True):
             option = input("List of all option:\n\
