@@ -67,6 +67,8 @@ def check_initials(text):
     return text
 
 def get_sentences_count(text):
+    text = check_abbrevations(text)
+    text = check_initials(text)
     text = del_russian(text)
     
     is_in_text = False
@@ -85,6 +87,8 @@ def get_sentences_count(text):
             + (text.count('!') - text.count('?!')) + (text.count('.') - text.count('...') * 3)
 
 def get_nondeclarative_sentences(text):
+    text = check_abbrevations(text)
+    text = check_initials(text)
     text = del_russian(text)
     
     is_in_text = False
@@ -98,10 +102,15 @@ def get_nondeclarative_sentences(text):
             
         if (text[i] in ['.', '?', '!']) and (is_in_text):
             text = text[:i] + '|' + text[i+1:]
+        
+        if (text[i] in ['?', '!']) and (not is_in_text) and (text[i-1] in ['?', '!']):
+            text = text[:i-1] + '|' + text[i:]
     
     return text.count('?') + text.count('!') - text.count("?!")
 
 def get_avg_sentencs_len(text):
+    text = check_abbrevations(text)
+    text = check_initials(text)
     text = del_russian(text)
     
     is_in_text = False
@@ -134,10 +143,15 @@ def get_avg_sentencs_len(text):
         #print(tmp, len(re.findall('([a-zA-Z0-9]{0,}[a-zA-Z]{1,}[a-zA-Z0-9]{0,})', tmp)))
         
     #print(sum / len(sentences_list))
+    
+    if (len(sentences_list) == 0):
+        return 0
             
     return sum / len(sentences_list)
     
 def get_avg_word_len(text):
+    text = check_abbrevations(text)
+    text = check_initials(text)
     text = del_russian(text)
     
     words_list = re.findall('([a-zA-Z0-9]{0,}[a-zA-Z]{1,}[a-zA-Z0-9]{0,})', text)
@@ -148,25 +162,41 @@ def get_avg_word_len(text):
     
     #print(words_list)
     
+    if len(words_list) == 0:
+        return 0
+    
     return sum / len(words_list)
 
 def top_ngram(text, k = 10, n = 4):
+    text = check_abbrevations(text)
+    text = check_initials(text)
     text = del_russian(text)
     
     grams = dict()
+    words_list = re.findall('([a-zA-Z0-9]{0,}[a-zA-Z]{1,}[a-zA-Z0-9]{0,})', text)
+    print(words_list)
     
-    for i in range(0, len(text) - k):
-        gram = text[i:i + n]
+    for i in range(0, len(words_list) - n + 1):
+        gram = ''
+        #print(words_list[i])
+        
+        for j in range (i, i + n):
+            gram += (words_list[j] + ' ')
+            
+        gram = gram[:-1]
+        #print(gram)
+            
         if (not gram in grams):
             grams[gram] = 1
         else:
             grams[gram] += 1
             
     sorted_dict = dict(sorted(grams.items(), key = lambda item: item[1], reverse = True))
-    sorted_dict = dict(list(sorted_dict.items())[:10])
+    
+    sorted_dict = dict(list(sorted_dict.items())[:k])
         
-    #print(grams)
-    #print(sorted_dict)
+    print(grams)
+    print(sorted_dict)
     return sorted_dict
 
 
