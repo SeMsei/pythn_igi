@@ -25,7 +25,21 @@ class CLI:
                 break
             elif option == '1':
                 tmp_list = input("Enter elements to add: ").split(' ')
-                self.cont.add(*tmp_list)
+                list_to_add = []
+                
+                for tmp in tmp_list:
+                    try:
+                        new_tmp = int(tmp)
+                        list_to_add.append(new_tmp)
+                    except:
+                        new_tmp = tmp
+                       # if new_tmp[0] == '\''
+                        new_tmp = new_tmp[1:]
+                        new_tmp = new_tmp[:-1]
+                        if len(str(new_tmp)) != 0:
+                            list_to_add.append(new_tmp)
+                
+                self.cont.add(*list_to_add)
             elif option == '2':
                 element = input("Enter element to remove: ")
                 self.cont.remove(element)
