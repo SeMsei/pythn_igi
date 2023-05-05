@@ -78,8 +78,8 @@ def serealize_func(obj):
                 if tmp_co_names == obj.__name__:
                     val['__globals__'][tmp_co_names] = obj.__name__
                 elif not inspect.ismodule(tmp_co_names) \
-                        and tmp_co_names in globs\
-                        and tmp_co_names not in __builtins__:
+                        and tmp_co_names in globs:
+                        #and tmp_co_names not in __builtins__:
                     val['__globals__'][tmp_co_names] = globs[tmp_co_names]
                     
     serealized['value'] = serealize(val)
@@ -213,6 +213,15 @@ def deserealize_dict(obj):
     return {deseralize(tmp[0]):deseralize(tmp[1]) for tmp in obj['value']}
 
 def deserealize_object(obj):
+    value = deseralize(obj['value'])
+    result = value['__object_type__'](**value['__fields__'])
+
+    for key, value in value['__fields__'].items():
+        result.key = value
+
+    return result
+    
+    '''
     print(1)
     
     val = deseralize(obj['value'])
@@ -228,6 +237,8 @@ def deserealize_object(obj):
         des.key = value
         
     return des
+
+    '''
 
 def deserealize_class(obj):
     class_dict = deseralize(obj['value'])
@@ -250,7 +261,7 @@ code_args = [
     'co_filename',
     'co_name',
     'co_firstlineno',
-    'co_lnotab',
+    'co_linetable',
     'co_freevars',
     'co_cellvars'
 ]
@@ -269,7 +280,7 @@ def deserealize_code(obj):
             code_list = [0] * 16
             
             for name in code_dict:
-                if (name == 'co_linetable'):
+                if (name == 'co_lnotab'):
                     continue
                 code_list[code_args.index(name)] = code_dict[name]
                 
@@ -303,6 +314,15 @@ class A:
     def func(self, a):
         print(a**a)
         
+    class F:
+        def __init__(self):
+            pass
+        
+        def func_2(self, g):
+            print(g**g)
+        
+
+        
 class B(A):
     def __init__(self):
         pass
@@ -314,9 +334,75 @@ tmp = deseralize(serealize(B))
 print(type(tmp))
 a = tmp()
 a.func(2)
+b = a.F()
+b.func_2(5)
 
 print(tmp.__bases__)
 
+def rec(n):
+    if (n == 1):
+        return 1
+    return n + rec(n-1)
+
+tmp = serealize(rec)
+tmp = deseralize(tmp)
+
+print(tmp(23))
+
+def my_shiny_new_decorator(function_to_decorate):
+    def the_wrapper_around_the_original_function():
+        function_to_decorate()
+
+    return the_wrapper_around_the_original_function
+
+
+def stand_alone_function():
+    print("Я простая одинокая функция, ты ведь не посмеешь меня изменять?")
+
+
+stand_alone_function_decorated = my_shiny_new_decorator(stand_alone_function)
+
+print(stand_alone_function_decorated())
+
+print(type(stand_alone_function_decorated))
+
+tmp = deseralize(serealize(my_shiny_new_decorator))
+
+print(type(tmp))
+
+
+
+x = lambda a : a + 10
+
+tmp = deseralize(serealize(x))
+
+print(tmp(10))
+
+def g(b):
+    return b+5
+
+def f(arr):
+    return sorted(arr)
+
+print(f([0.5, 0.6]))
+
+tmp = serealize(f)
+tmp = deseralize(tmp)
+
+print(1)
+
+print(tmp([0.5, 0.6]), type(tmp), 'qwe')
+
+class A:
+    a = 123
+    
+    def __init__(self):
+        pass
+
+a = A()
+tmp = deseralize(serealize(a))
+
+print(tmp.a)
 
 
 '''
