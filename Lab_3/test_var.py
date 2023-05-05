@@ -66,6 +66,9 @@ def func6(n):
 def func7(n):
     return n*func6(n-1)
 
+lambda1 = lambda a : a + 10
+lambda2 = lambda a, b, c : a + b + c
+
 
 #class test
 

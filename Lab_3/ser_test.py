@@ -101,7 +101,15 @@ def test_func_7():
 def test_func_8():
     assert func7(5) == deseralize(serealize(func7))(5)
     
-
+def test_func_9():
+    tmp = deseralize(serealize(lambda1))
+    
+    assert tmp(5) == lambda1(5)
+    
+def test_func_10():
+    tmp = deseralize(serealize(lambda2))
+    
+    assert tmp(1, 2, 3) == lambda2(3, 2, 1)
 
 def test_class_1():
     tmp = deseralize(serealize(A))
