@@ -185,10 +185,122 @@ def serealize_module(obj):
     
     return serealized
 
+def deseralize(obj):
+    if (obj['type'] in ['int', 'float', 'bool', 'complex', 'str']):
+        return deserealize_single(obj)
+    if (obj['type'] in ['list', 'set', 'frozenset', 'tuple', 'bytes']):
+        return deserealize_list(obj)
+    if (obj['type'] == 'dict'):
+        return deserealize_dict(obj)
+    if (obj['type'] == 'object'):
+        return deserealize_object(obj)
+    if (obj['type'] == 'class'):
+        return deserealize_class(obj)
+    if (obj['type'] == 'function'):
+        return deserealize_func(obj)
+    if (obj['type'] == 'module'):
+        return deseralize_module(obj)
+    
+def deserealize_single(obj):
+    tmp_obj = locate(obj['type'])
+    return tmp_obj(obj['value'])
 
+def deserealize_list(obj):
+    tmp_obj = locate(obj['type'])
+    return tmp_obj([deseralize(tmp) for tmp in obj['value']])
 
+def deserealize_dict(obj):
+    return {deseralize(tmp[0]):deseralize(tmp[1]) for tmp in obj['value']}
 
+def deserealize_object(obj):
+    print(1)
+    
+    val = deseralize(obj['value'])
+    
+    print("********************************************************")
+    print(val)
+    print("********************************************************")
+    
+    val['__object_type__'] = val['__fields__']
+    des = val
+    
+    for key, value in val['__fields__'].items():
+        des.key = value
+        
+    return des
 
+def deserealize_class(obj):
+    class_dict = deseralize(obj['value'])
+    name = class_dict['__name__']
+    del class_dict['__name__']
+    
+    return type(name, (object,), class_dict)
+
+code_args = [
+    'co_argcount',
+    'co_posonlyargcount',
+    'co_kwonlyargcount',
+    'co_nlocals',
+    'co_stacksize',
+    'co_flags',
+    'co_code',
+    'co_consts',
+    'co_names',
+    'co_varnames',
+    'co_filename',
+    'co_name',
+    'co_firstlineno',
+    'co_lnotab',
+    'co_freevars',
+    'co_cellvars'
+]
+
+def deserealize_code(obj):
+    objs = obj['value']['value']
+    
+    for tmp in objs:
+        if tmp[0]['value'] == '__code__':
+            args = deseralize(tmp[1]['value'])
+            code_dict = dict()
+            for arg in args:
+                arg_val = args[arg]
+                if arg != '__doc__':
+                    code_dict[arg] = arg_val
+            code_list = [0] * 16
+            
+            for name in code_dict:
+                if (name == 'co_linetable'):
+                    continue
+                code_list[code_args.index(name)] = code_dict[name]
+                
+            return types.CodeType(*code_list)
+        
+def deserealize_func(obj):
+    res_dict = deseralize(obj['value'])
+    res_dict['code'] = deserealize_code(obj)
+    res_dict.pop('__code__')
+    res_dict['globals'] = res_dict['__globals__']
+    res_dict.pop('__globals__')
+    res_dict['name'] = res_dict['__name__']
+    res_dict.pop('__name__')
+    res_dict['argdefs'] = res_dict['__defaults__']
+    res_dict.pop('__defaults__')
+    
+    res = types.FunctionType(**res_dict)
+    if res.__name__ in res.__getattribute__('__globals__'):
+        res.__getattribute__('__globals__')[res.__name__] = res
+        
+    return res
+
+def deseralize_module(obj):
+    return __import__(obj['value'])
+            
+
+obj = [1, 2, (3, 4), {1:2, 3:4}]
+
+print(serealize(obj))
+
+print(deseralize({'type': 'list', 'value': [{'type': 'int', 'value': '1'}, {'type': 'int', 'value': '2'}, {'type': 'tuple', 'value': [{'type': 'int', 'value': '3'}, {'type': 'int', 'value': '4'}]}, {'type': 'dict', 'value': [[{'type': 'int', 'value': '1'}, {'type': 'int', 'value': '2'}], [{'type': 'int', 'value': '3'}, {'type': 'int', 'value': '4'}]]}]}))
 
 
 
