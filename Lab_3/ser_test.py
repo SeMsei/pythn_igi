@@ -158,6 +158,14 @@ def test_class_object_1():
     assert tmp.a == a.a
     assert tmp.qwe(4) == a.qwe(4)
     
+def test_class_5():
+    tmp = deseralize(serealize(st))
     
+    assert tmp.qwe() == st.qwe()
+    
+def test_class_6():
+    tmp = deseralize(serealize(cl))
+    
+    assert tmp.qwe() == cl.qwe()
     
     

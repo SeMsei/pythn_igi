@@ -125,3 +125,13 @@ class second(first):
         pass
     def func(self, a):
         return a**a
+    
+class st:
+    @staticmethod
+    def qwe():
+        return 5
+    
+class cl:
+    @classmethod
+    def qwe(self):
+        return 5
