@@ -20,7 +20,7 @@ def serealize(obj):
         obj = ser_class_old(obj)
     elif (inspect.ismethoddescriptor(obj) or inspect.isbuiltin(obj)):
         obj = serealize_instance(obj)
-    elif inspect.ismemberdescriptor(obj):
+    elif inspect.ismemberdescriptor(obj):  
         obj = serealize_instance(obj)
     elif inspect.isgetsetdescriptor(obj):
         obj = serealize_instance(obj)
@@ -165,7 +165,6 @@ def ser_class_old(obj):
     
     
 def serealize_object(obj):
-    print(type(obj))
     
     serealized = dict()
     serealized['type'] = 'object'
@@ -307,102 +306,7 @@ def deseralize_module(obj):
     return __import__(obj['value'])
             
 
-class A:
-    def __init__(self):
-        pass
-    
-    def func(self, a):
-        print(a**a)
-        
-    class F:
-        def __init__(self):
-            pass
-        
-        def func_2(self, g):
-            print(g**g)
-        
 
-        
-class B(A):
-    def __init__(self):
-        pass
-    
-    def func_1(self, b):
-        print(b**b)
-        
-tmp = deseralize(serealize(B))
-print(type(tmp))
-a = tmp()
-a.func(2)
-b = a.F()
-b.func_2(5)
-
-print(tmp.__bases__)
-
-def rec(n):
-    if (n == 1):
-        return 1
-    return n + rec(n-1)
-
-tmp = serealize(rec)
-tmp = deseralize(tmp)
-
-print(tmp(23))
-
-def my_shiny_new_decorator(function_to_decorate):
-    def the_wrapper_around_the_original_function():
-        function_to_decorate()
-
-    return the_wrapper_around_the_original_function
-
-
-def stand_alone_function():
-    print("Я простая одинокая функция, ты ведь не посмеешь меня изменять?")
-
-
-stand_alone_function_decorated = my_shiny_new_decorator(stand_alone_function)
-
-print(stand_alone_function_decorated())
-
-print(type(stand_alone_function_decorated))
-
-tmp = deseralize(serealize(my_shiny_new_decorator))
-
-print(type(tmp))
-
-
-
-x = lambda a : a + 10
-
-tmp = deseralize(serealize(x))
-
-print(tmp(10))
-
-def g(b):
-    return b+5
-
-def f(arr):
-    return sorted(arr)
-
-print(f([0.5, 0.6]))
-
-tmp = serealize(f)
-tmp = deseralize(tmp)
-
-print(1)
-
-print(tmp([0.5, 0.6]), type(tmp), 'qwe')
-
-class A:
-    a = 123
-    
-    def __init__(self):
-        pass
-
-a = A()
-tmp = deseralize(serealize(a))
-
-print(tmp.a)
 
 
 '''

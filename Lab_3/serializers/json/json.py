@@ -2,24 +2,34 @@ import sys
 #from serializers.functions import serealize
 #from serializers.functions import deseralize
 from serializers.dict_serializer.functions import deseralize, serealize
-from parse_json import parse_json
+from serializers.json.parse_json import parse_json
+
+
 
 class Json:
     @staticmethod
-    def dumps(self, obj):
+    def dumps(obj):
         obj = str(serealize(obj))
         
         return obj
 
     @staticmethod
-    def dump(self, obj, file_name):
+    def dump(obj, file_name):
         f = open(file_name, 'w+')
         f.truncate()
-        f.write(self.dumps(obj))
+        f.write(Json.dumps(obj))
         
     @staticmethod
-    def loads(self, str):
-        return deseralize(parse_json(str))
+    def loads(str):
+        tmp = parse_json(str)
+        
+        return deseralize(tmp)
+    
+    @staticmethod
+    def load(file_name):
+        f = open(file_name, 'r+')
+        str = f.read()
+        return Json.loads(str)  
     
 
                 

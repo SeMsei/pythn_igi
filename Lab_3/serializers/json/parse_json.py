@@ -1,4 +1,7 @@
 def parse_json(obj):
+    if (obj == '[]') :
+        return {}
+    
     if (obj[0] in ['{', '[']):
         res = dict()
         bracket_num = 0
@@ -48,4 +51,6 @@ def parse_json(obj):
         return res
     
     
-print(parse_json("{'type': 'dict', 'value': [[{'type': 'int', 'value': 1}, {'type': 'int', 'value': 1}], [{'type': 'int', 'value': 2}, {'type': 'int', 'value': 2}], [{'type': 'int', 'value': 3}, {'type': 'int', 'value': 3}], [{'type': 'int', 'value': 4}, {'type': 'tuple', 'value': [{'type': 'int', 'value': 5}, {'type': 'int', 'value': 6}, {'type': 'int', 'value': 7}]}]]}"))
+print(parse_json("{'type': 'list', 'value': [{'type': 'int', 'value': 1}, {'type': 'int', 'value': 2}, {'type': 'int', 'value': 3}, {'type': 'tuple', 'value': [{'type': 'int', 'value': 4}, {'type': 'int', 'value': 5}, {'type': 'dict', 'value': [[{'type': 'int', 'value': 6}, {'type': 'str', 'value': '6'}], [{'type': 'int', 'value': 7}, {'type': 'int', 'value': 789}]]}]}]}"))
+
+print("{'type': 'list', 'value': [{'type': 'int', 'value': 1}, {'type': 'int', 'value': 2}, {'type': 'int', 'value': 3}, {'type': 'tuple', 'value': [{'type': 'int', 'value': 4}, {'type': 'int', 'value': 5}, {'type': 'dict', 'value': [[{'type': 'int', 'value': 6}, {'type': 'str', 'value': '6'}], [{'type': 'int', 'value': 7}, {'type': 'int', 'value': 789}]]}]}]}")

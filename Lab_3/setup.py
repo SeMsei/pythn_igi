@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="serializer_for_igi",
-    version="1.02",
+    version="1.09",
     description="library for python serialization as lab",
     url="https://github.com/SeMsei/pythn_igi/tree/lab3/Lab_3",
     author="Denis Fomichevskiy",

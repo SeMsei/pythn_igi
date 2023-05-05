@@ -13,17 +13,20 @@ class Xml:
         obj = loads_to_dict(obj)
         
         return deseralize(obj)
+    
+    @staticmethod
+    def dump(obj, file_name):
+        f = open(file_name, 'w+')
+        f.truncate()
+        f.write(Xml.dumps(obj))
+        
+    @staticmethod
+    def load(file_name):
+        f = open(file_name, 'r+')
+        str = f.read()
+        return Xml.loads(str)  
 
 
 
 
-                      
-tmp = dumps_from_dict({'type': 'list', 'value': [{'type': 'int', 'value': 1}, {'type': 'int', 'value': 2}, {'type': 'tuple', 'value': [{'type': 'int', 'value': 3}, {'type': 'int', 'value': 4}]}, {'type': 'dict', 'value': [[{'type': 'int', 'value': 1}, {'type': 'int', 'value': 2}], [{'type': 'int', 'value': 3}, {'type': 'int', 'value': 4}]]}]})
-
-print(tmp)
-
-tmp1 = loads_to_dict(tmp)
-
-tmp = Xml.loads(tmp)
-
-print(tmp)
+                    
