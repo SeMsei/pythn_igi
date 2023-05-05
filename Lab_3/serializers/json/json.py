@@ -1,6 +1,7 @@
 import sys
 #from serializers.functions import serealize
 #from serializers.functions import deseralize
+from serializers.dict_serializer.functions import deseralize, serealize
 from parse_json import parse_json
 
 class Json:
