@@ -296,12 +296,26 @@ def deseralize_module(obj):
     return __import__(obj['value'])
             
 
-obj = [1, 2, (3, 4), {1:2, 3:4}]
+class A:
+    def __init__(self):
+        pass
+    
+    def func(self, a):
+        print(a**a)
+        
+class B(A):
+    def __init__(self):
+        pass
+    
+    def func_1(self, b):
+        print(b**b)
+        
+tmp = deseralize(serealize(B))
+print(type(tmp))
+a = tmp()
+a.func(2)
 
-print(serealize(obj))
-
-print(deseralize({'type': 'list', 'value': [{'type': 'int', 'value': '1'}, {'type': 'int', 'value': '2'}, {'type': 'tuple', 'value': [{'type': 'int', 'value': '3'}, {'type': 'int', 'value': '4'}]}, {'type': 'dict', 'value': [[{'type': 'int', 'value': '1'}, {'type': 'int', 'value': '2'}], [{'type': 'int', 'value': '3'}, {'type': 'int', 'value': '4'}]]}]}))
-
+print(tmp.__bases__)
 
 
 
