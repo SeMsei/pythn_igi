@@ -164,8 +164,16 @@ def test_class_5():
     assert tmp.qwe() == st.qwe()
     
 def test_class_6():
-    tmp = deseralize(serealize(cl))
+    tmp = deseralize(serealize(HardClass))
     
-    assert tmp.qwe() == cl.qwe()
+    h = HardClass()
+    tmp = tmp()
     
+    assert tmp.a == h.a
+    assert tmp.s == h.s
+    assert tmp.func(1,2) == h.func(1,2)
+    
+    assert tmp.c == h.c
+    assert tmp.func1(1, 2, 3, 4) == h.func1(1, 2, 3, 4)
+    assert tmp.func2(5) == h.func2(5)
     

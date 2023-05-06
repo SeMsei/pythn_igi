@@ -131,7 +131,30 @@ class st:
     def qwe():
         return 5
     
-class cl:
-    @classmethod
-    def qwe(self):
-        return 5
+class HardBase:
+    a = 123
+    s = '123'
+    
+    def __init__(self):
+        pass
+    
+    def func(self, a, b):
+        return a ** b
+    
+class HardClass(HardBase):
+    c = 456
+    
+    def __init__(self):
+        pass
+    
+    def func1(self, *args):
+        import math
+        sum = 0
+        
+        for tmp in args:
+            sum += tmp
+            
+        return tmp
+    
+    def func2(self, a):
+        return func7(a)
