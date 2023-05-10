@@ -159,16 +159,16 @@ class HardClass(HardBase):
     def func2(self, a):
         return func7(a)
     
-def decccc(func):
+def deccc(func):
     def wrap(*args):
         if (len(args) > 10):
             raise 'qwe'
         
-        return f(args)
+        return func(args)
         
     return wrap
 
-def fffff(*args):
+def ffff(*args):
     sum = 0
     t = args[0]
     for tmp in t:
