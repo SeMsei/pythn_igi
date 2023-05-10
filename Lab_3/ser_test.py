@@ -177,3 +177,19 @@ def test_class_6():
     assert tmp.func1(1, 2, 3, 4) == h.func1(1, 2, 3, 4)
     assert tmp.func2(5) == h.func2(5)
     
+def test_some_1():
+    tmp = deseralize(serealize(CCCC))
+    c = CCCC()
+    tmp = tmp()
+    
+    assert c.a == tmp.a
+    assert c.b == tmp.b
+    assert c.c == tmp.c
+    
+def test_some_2():
+    tmp = deseralize(serealize(decccc))
+    tmp = tmp(fffff)
+    
+    f = decccc(fffff)
+    
+    return f(1,2,3) == tmp(1,2,3)

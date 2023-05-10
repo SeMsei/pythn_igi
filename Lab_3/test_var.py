@@ -158,3 +158,35 @@ class HardClass(HardBase):
     
     def func2(self, a):
         return func7(a)
+    
+def decccc(func):
+    def wrap(*args):
+        if (len(args) > 10):
+            raise 'qwe'
+        
+        return f(args)
+        
+    return wrap
+
+def fffff(*args):
+    sum = 0
+    t = args[0]
+    for tmp in t:
+        sum += tmp
+        
+    return sum
+
+class AAAA:
+    a = 123
+    def __init__(self):
+        pass
+
+class BBBB:
+    b = 234
+    def __init__(self):
+        pass
+    
+class CCCC(AAAA, BBBB):
+    c = 345
+    def __init__(self):
+        pass
