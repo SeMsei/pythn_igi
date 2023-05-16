@@ -1,0 +1,24 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+{{ book.title }}
+{% endblock %}
+{% block content %}
+<div class="book-detail">
+    <img src="{% if book.image %}{{ book.image.url }}{% else %}
+    {% static 'img/no_image.png' %}{% endif %}">
+    <h1>{{ book.title }}</h1>
+    <h2>
+        <a href="{{ book.genre.get_absolute_url }}">{{book.genre }}</a>
+    </h2>
+    <p class="cost">{{ book.cost }}</p>
+
+    <form action="{% url 'cart:cart_add' book.id %}" method="post">
+        {{ cart_book_form }}
+        {% csrf_token %}
+        <input type="submit" value="Add to cart">
+    </form>
+    
+    {{ book.summary|linebreaks }}
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+{% if genre %}{{ genre.name }}{% else %}Books{% endif %}
+{% endblock %}
+{% block content %}
+<div id="sidebar">
+    <h3>Genres</h3>
+    <ul>
+        <li {% if not genre %}class="selected"{% endif %}>
+            <a href="{% url 'shop:book_list' %}">All</a>
+        </li>
+        {% for c in genres %}
+        <li {% if genre.name == c.name %}class="selected" {% endif %}>
+            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div id="main" class="book-list">
+    <h1>{% if genre %}{{ genre.name }}{% else %}Book{% endif %}</h1>
+    {% for book in books %}
+    <div class="item">
+        <a href="{{ book.get_absolute_url }}">
+            <img src="{% if book.image %}{{ book.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}">
+        </a>
+        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+        <br>
+        {{ book.cost }}
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}
