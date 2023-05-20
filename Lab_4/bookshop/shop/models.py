@@ -37,7 +37,7 @@ class Language(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=200,
                             help_text='Enter book title')
-    author = models.ManyToManyField(Author)
+    author = models.ForeignKey(Author, on_delete = models.CASCADE)
     summary = models.CharField(max_length=200,
                             help_text='Enter book summry')
     imprint = models.CharField(max_length=200,
@@ -46,6 +46,7 @@ class Book(models.Model):
     ISBN = models.CharField(max_length=200,
                             help_text='Enter ISBN')
     quantity = models.IntegerField()
+    purchase_count = models.PositiveIntegerField(default=0)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     cost = models.IntegerField()

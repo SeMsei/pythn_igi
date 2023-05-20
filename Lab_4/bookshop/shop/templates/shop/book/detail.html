@@ -12,13 +12,23 @@
         <a href="{{ book.genre.get_absolute_url }}">{{book.genre }}</a>
     </h2>
     <p class="cost">{{ book.cost }}</p>
-
+    {%if user.is_authenticated%}
     <form action="{% url 'cart:cart_add' book.id %}" method="post">
         {{ cart_book_form }}
         {% csrf_token %}
         <input type="submit" value="Add to cart">
     </form>
+    {%endif%}
     
     {{ book.summary|linebreaks }}
+    {%if user.is_staff%}
+    <td><a href="edit/{{book.id}}/">Edit</a> | <a href="delete/{{book.id}}/">Remove</a></td>
+    {%endif%}
+    <div class="bottom-right">
+        <p>{{ joke }}</p>
+    </div>
+    
+
+    
 </div>
 {% endblock %}

@@ -18,7 +18,18 @@
     </ul>
 </div>
 <div id="main" class="book-list">
-    <h1>{% if genre %}{{ genre.name }}{% else %}Book{% endif %}</h1>
+    <h1>{% if genre %}{{ genre.name }}{% else %}Book{% endif %}
+        {% if user.is_staff %}
+        <a href="/create/">Create Product</a>
+        {% endif %}
+        {%if user.is_superuser%}
+        <a href="/statistic/">statistic</a>
+        {%endif%}
+        <form action="{{ request.get_full_path }}" method="get">
+            <button type="submit" name="sort" value="ascending">Сортировать по возрастанию</button>
+            <button type="submit" name="sort" value="descending">Сортировать по убыванию</button>
+        </form>
+    </h1>
     {% for book in books %}
     <div class="item">
         <a href="{{ book.get_absolute_url }}">
