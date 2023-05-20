@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <style>
+            table {
+              border-collapse: collapse;
+            }
+          
+            table, th, td {
+              border: 1px solid black;
+              padding: 8px;
+            }
+          </style>
+        <table>
+            <tbody>
+              {% for arr in main_arr %}
+              <tr>
+                {%for cell in arr%}
+                  
+                    <td>{{ cell }}</td>
+                  
+                {%endfor%}
+            </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <form action="/statistic/" method="get">
+            <button type="submit">Back</button>
+          </form>
+    </body>
+</html>
