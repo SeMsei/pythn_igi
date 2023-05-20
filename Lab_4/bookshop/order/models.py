@@ -3,7 +3,7 @@ from shop.models import Book, Client
 
 
 class Order(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -20,7 +20,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, related_name='order_items', on_delete=models.DO_NOTHING)
+    book = models.ForeignKey(Book, related_name='order_items', on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
 
