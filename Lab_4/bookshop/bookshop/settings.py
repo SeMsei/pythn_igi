@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'order.apps.OrderConfig',
     'login',
     'analyzer.apps.AnalyzerConfig',
+    'coupons',
 ]
 
 MIDDLEWARE = [

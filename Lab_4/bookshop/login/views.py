@@ -47,8 +47,9 @@ class LoginFormView(FormView) :
         template_name = 'login.html'
 
         quote = requests.get('https://favqs.com/api/qotd').json()
+        #quote = ''
         def get(self, request) :
-            return render(request, 'login.html', context={'form' : self.form_class(), 'quote' : self.quote['quote']['body']})
+            return render(request, 'login.html', context={'form' : self.form_class(), 'quote':self.quote['quote']['body']})
 
         success_url = '/'
 

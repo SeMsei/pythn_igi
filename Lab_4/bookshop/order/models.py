@@ -1,9 +1,10 @@
 from django.db import models
 from shop.models import Book, Client
+from login.models import CustomUser
 
 
 class Order(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True)
+    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:

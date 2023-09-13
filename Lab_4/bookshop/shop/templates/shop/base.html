@@ -1,78 +1,104 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>{% block title %}My shop{% endblock %}</title>
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
-</head>
-<body>
-<div id="header">
-    <a href="/" class="logo">My shop</a>
-    <div>
-    <p>Current Date <span id='date'></span>.</p>
-    <p>Current time <span id='time'></span></p>
-    <p>Current time zone <span id='zone'></span></p>
-</div>
-    <script>
-        const today = new Date();
-        const yyyy = today.getFullYear();
-        let mm = today.getMonth() + 1; // Months start at 0!
-        let dd = today.getDate();
-        let h = today.getHours();
-        if (h<10)
-            h = '0' + h;
-        let min = today.getMinutes();
-        if (min < 10)
-            min = '0' + min;
-        let sec = today.getSeconds();
-        if (sec < 10)
-            sec = '0' + sec;
+<html translate="no" lang="ru" itemscope itemtype="https://schema.org/BookStore">
+    <head>
+        <meta charset="utf-8"/>
+        {% block extra_head %}{% endblock %}
+        <title>{% block title %}My shop{% endblock %}</title>
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}">
+    </head>
+    <body>
+        <div id="header">
+            <a href="/" class="logo">My shop</a>
+            <div>
+            Current Date <span id='date'></span>.
+            Current time <span id='time'></span>
+            Current time zone <span id='zone'></span>
+        </div>
+            <script>
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                let mm = today.getMonth() + 1;
+                let dd = today.getDate();
+                let h = today.getHours();
+                if (h<10)
+                    h = '0' + h;
+                let min = today.getMinutes();
+                if (min < 10)
+                    min = '0' + min;
+                let sec = today.getSeconds();
+                if (sec < 10)
+                    sec = '0' + sec;
 
-        if (dd < 10) dd = '0' + dd;
-        if (mm < 10) mm = '0' + mm;
+                if (dd < 10) dd = '0' + dd;
+                if (mm < 10) mm = '0' + mm;
 
-        let formattedToday = dd + '/' + mm + '/' + yyyy;
-        let time = h+":"+min+":"+sec; 
-        let tz = -(new Date().getTimezoneOffset() / 60);
-        if(tz>0){
-            tz = "+" + tz;
-        }
-        tz = "UTC" + tz;
-        document.getElementById('date').innerHTML=formattedToday;
-        document.getElementById('time').innerHTML=time;
-        document.getElementById('zone').innerHTML=tz;
-        </script>
+                let formattedToday = dd + '/' + mm + '/' + yyyy;
+                let time = h+":"+min+":"+sec; 
+                let tz = -(new Date().getTimezoneOffset() / 60);
+                if(tz>0){
+                    tz = "+" + tz;
+                }
+                tz = "UTC" + tz;
+                document.getElementById('date').innerHTML=formattedToday;
+                document.getElementById('time').innerHTML=time;
+                document.getElementById('zone').innerHTML=tz;
+                </script>
 
 
-</div>
-<div id="subheader">
-    <div class="cart">
-        {%if user.is_authenticated%}
-        {% with total_items=cart|length %}
-            {% if cart|length > 0 %}
-                Your cart:
-                <a href="{% url 'cart:cart_detail' %}">
-                    {{ total_items }} item{{ total_items|pluralize }},
-                    ${{ cart.get_total_price }}
-                </a>
-            {% else %}
-                Your cart is empty.
-            {% endif %}
-        {% endwith %}
-        {%endif%}
-        {% if user.is_authenticated %}
-                |{{ user.username }}|
-                <a href="{% url 'login:logout' %}">Out</a>
-                {% else %}
-                <a href="{% url 'login:login' %}">Sign up</a>
-                <a href="{% url 'login:register' %}">Sign in</a>
-                {% endif %}
-    </div>
-</div>
-<div id="content">
-    {% block content %}
-    {% endblock %}
-</div>
-</body>
+        </div>
+        <div id="subheader">
+            <div class="cart">
+                {%if user.is_authenticated%}
+                {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        Your cart:
+                        <a href="{% url 'cart:cart_detail' %}">
+                            {{ total_items }} item{{ total_items|pluralize }},
+                            ${{ cart.get_total_price }}
+                        </a>
+                    {% else %}
+                        Your cart is empty.
+                    {% endif %}
+                {% endwith %}
+                {%endif%}
+                {% if user.is_authenticated %}
+                        |{{ user.username }}|
+                        <a href="{% url 'login:logout' %}">Out</a>
+                        {% else %}
+                        <a href="{% url 'login:login' %}">Sign up</a>
+                        <a href="{% url 'login:register' %}">Sign in</a>
+                        {% endif %}
+            </div>
+        </div>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+    <tail>
+        <aside>
+            <nav>
+                <br>
+                <a href="/main/">Главная&nbsp;</a>
+                <a href="/vacancies/">Вакансии&nbsp;</a>
+                <a href="/coupons/">Купоны&nbsp;</a>
+                <a href="/articles/">Статьи&nbsp;</a>
+                <br>
+            </nav>
+        </aside>
+        <nav>
+            <br>
+            <a href="/about/">О компании&nbsp;</a>
+            <a href="/faq/">Вопросы&nbsp;</a>
+            <a href="/workers/">Наши работники&nbsp;</a>
+            <a href="/privacy/">Политика конфеденциальности&nbsp;</a>
+        </nav>
+        {% if user.is_staff%}
+        
+        {% endif %}
+        <a href="/comments/">Комментарии</a>
+        
+    </tail>
 </html>

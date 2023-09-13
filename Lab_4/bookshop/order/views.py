@@ -3,6 +3,7 @@ from .models import OrderItem
 #from .forms import OrderCreateForm
 from cart.cart import Cart
 from shop.models import Client
+from login.models import CustomUser
 from .models import Order
 from django.core.exceptions import PermissionDenied
 
@@ -35,8 +36,9 @@ def order_create(request):
         raise PermissionDenied("net dostpa")
 
     cart = Cart(request)
-    if request.method == 'POST':        
-        order = Order.objects.create(client = Client.objects.filter(email=request.user.email).first())
+    if request.method == 'POST': 
+        print(request.user.email)      
+        order = Order.objects.create(client = CustomUser.objects.filter(email=request.user.email).first())
 
         for item in cart:
             OrderItem.objects.create(order=order,

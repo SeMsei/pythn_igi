@@ -4,6 +4,7 @@ from shop.models import Book
 from .cart import Cart
 from .forms import CartAddBookForm
 from django.core.exceptions import PermissionDenied
+from coupons.forms import CouponApplyForm
 
 @require_POST
 def cart_add(request, book_id):
@@ -33,4 +34,6 @@ def cart_detail(request):
     if not request.user.is_authenticated:
         raise PermissionDenied("Net dostupa")
     cart = Cart(request)
-    return render(request, 'cart/detail.html', {'cart': cart})
+    coupon_apply_form = CouponApplyForm()
+    return render(request, 'cart/detail.html', {'cart': cart,
+                                        'coupon_apply_form': coupon_apply_form})

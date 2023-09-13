@@ -28,6 +28,10 @@ a.button, input[type="submit"] {
     border:0;
 }
 
+a.button.active {
+    color: blue;
+}
+
 a.button.light {
     color:#666;
     background:#ededed;

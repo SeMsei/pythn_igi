@@ -108,11 +108,6 @@ def test_with_authenticated_client_2(admin_client):
 def test_with_authenticated_client_3(admin_client):
     response = admin_client.get('http://127.0.0.1:8000/statistic/tables/')
     assert response.status_code == 200
-'''
-def test_with_authenticated_client_4(admin_client):
-    response = admin_client.get('http://127.0.0.1:8000/statistic/predict/1/')
-    assert response.status_code == 200
-'''
 
 
 
