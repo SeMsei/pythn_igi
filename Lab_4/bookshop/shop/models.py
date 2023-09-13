@@ -1,6 +1,9 @@
 from django.db import models
 from typing import List
+from datetime import date
 from django.urls import reverse
+from login.models import CustomUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Author(models.Model):
     name = models.CharField(max_length=200,
@@ -80,6 +83,63 @@ class Client(models.Model) :
 
     def __str__(self) :
         return '{0}, {1}'.format(self.first_name, self.last_name) 
+    
+class History(models.Model):
+    year = models.PositiveIntegerField(
+            validators=[
+                MinValueValidator(1900), 
+                MaxValueValidator(date.today().year)],
+                help_text="Use the following format: YYYY")
+    description = models.TextField()
+
+    def __str__(self):
+        return self.description
+    
+class Article(models.Model):
+    date = models.DateField()
+    title = models.CharField(max_length=200)
+    short = models.TextField()
+    full = models.TextField()
+    author_art = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    img = models.ImageField()
+
+class Adversisment(models.Model):
+    company_name=models.CharField(max_length=200)
+    text = models.CharField(max_length=200)
+    img = models.ImageField()
+    link = models.CharField(max_length = 200)
+
+class Partner(models.Model):
+    company_name=models.CharField(max_length=200)
+    img = models.ImageField()
+    link = models.CharField(max_length = 200)
+
+class Vacancy(models.Model):
+    name = models.CharField(max_length=200)
+    salary = models.IntegerField()
+    description = models.TextField()
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=200)
+    answer = models.TextField()
+    date = models.DateField()
+
+class WorkerPosition(models.Model):
+    worker = models.OneToOneField(CustomUser, on_delete=models.CASCADE, 
+                               limit_choices_to={'is_staff': True})
+    img = models.ImageField()
+    description = models.TextField()
+
+INT_CHOICES = [(x, "★"*x) for x in range(1, 6)]
+
+class Comment(models.Model):
+    
+
+    date = models.DateField()
+    mark = models.IntegerField(choices=INT_CHOICES, validators=[MinValueValidator(1), MaxValueValidator(5)], default=1)
+    author = models.ForeignKey(CustomUser, on_delete = models.CASCADE)
+    text = models.TextField()
+
 '''
 class BookInstance(models.Model):
     uniqueId = models.SlugField(max_length=200, db_index=True)
