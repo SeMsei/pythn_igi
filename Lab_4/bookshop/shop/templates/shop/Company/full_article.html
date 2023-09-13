@@ -1,0 +1,25 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+Статья {{article.title}}
+{% endblock %}
+{% block extra_head %}
+<meta
+    name="description"
+    content="Cтраница cтатьи" />
+<meta name="keywords" content="Book, bookshop, shop, article">
+<meta name="author" content="Denis fomichevsjiy">
+{% endblock %}
+{% block content %}
+
+<footer itemscope itemtype="https://schema.org/Article">
+    <h1 align="center" itemprop="name">Статья {{article.title}}</h1>
+</footer>
+<article itemscope itemtype="https://schema.org/Article">
+    <img itemprop="image" src="{{article.img.url}}">
+    <p itemprop="articleBody">{{article.full}}</p>
+    <hr/>
+</article>
+
+{% endblock %}

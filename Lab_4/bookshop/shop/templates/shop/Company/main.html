@@ -1,0 +1,146 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+Главная
+{% endblock %}
+{% block extra_head %}
+<meta
+    name="description"
+    content="Главная страница веб-сайта" />
+<meta name="keywords" content="Book, bookshop, shop">
+<meta name="author" content="Denis fomichevsjiy">
+{% endblock %}
+{% block content %}
+        <footer>
+            <h1 align="center">Главная</h1>
+        </footer>
+        <hr/>
+        <article itemscope itemtype="https://schema.org/Article">
+            <h2>Последняя статья:</h2>
+            <p dir="ltr" itemprop="name"><b>{{last_article.title}}</b></p>
+            <p dir="ltr" itemprop="articleBody">{{last_article.short}}</p>
+            <p dir="ltr" itemprop="datePublished">{{last_article.date}}</p>
+        </article>
+        <hr/>
+        <section itemscope itemtype="https://schema.org/AdvertiserContentArticle">
+            <h2>Рекламный блок:</h2>
+            <p itemprop="articleBody">{{adv.text}} <a itemprop="name" href = {{adv.link}}>{{adv.company_name}}</a></p>
+            <a href = {{adv.link}} target="_blank"><img itemprop="image" src="{{adv.img.url}}""></a>
+        </section>
+        <hr/>
+        <section>
+            <pre>
+                <code>
+ReadFromBuffer PROC
+	mov ch, 02h
+	ReadBufferLoop:
+		call CheckEnteredSymbol
+		jz OutFromLoop
+		
+		mov ah, 00h
+		int 16h
+		
+		cmp ah, 01h
+		je RememberChar
+		cmp ah, 1Eh
+		je RememberChar
+		cmp ah, 20h
+		je RememberChar
+		cmp ah, 1Fh
+		je RememberChar
+		cmp ah, 11h
+		je RememberChar
+		
+	
+	jmp ReadBufferLoop
+	
+	RememberChar:
+		mov ch, ah
+	
+	WhileNotEmpty:
+		call CheckEnteredSymbol
+		jz OutFromLoop
+		
+		mov ah, 00h
+		int 16h
+		
+	jmp WhileNotEmpty	
+	
+	OutFromLoop:
+		mov ah, ch	
+	
+	ret			
+
+ReadFromBuffer ENDP
+                </code>
+            </pre>
+        </section>
+        <section>
+            <p><abbr title="Common Gateway Interface, общий шлюзовый интерфейс">CGI</abbr> 
+                обозначается протокол, с помощью которого любые внешние программы взаимодействуют 
+                с веб-сервером. С помощью CGI на сервере можно выполнять программы на любом 
+                языке программирования и результат их действия выводить в виде веб-страницы.</p>
+        </section>
+        <section>
+            <p>A <dfn id="def-validator">validator</dfn> is a program that checks for syntax errors in code or documents.</p>
+        </section>
+        <section>
+            <table>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th></th>
+                    <th id="name" colspan="3" >Name</th>
+                    <th id="phone">Phone No.</th>
+                </tr>
+                <tr>
+                    <th id="woman" rowspan="2">
+                        Woman
+                    </th>
+                    <td headers="name">abc_woman</td>
+                    <td headers="father">abc_woman Gupta</td>
+                    <td headers="mother">abc_woman Gupta</td>
+                    <td headers="phone">12345</td>
+                </tr>
+                <tr>
+                    <td headers="name">abc_woman</td>
+                    <td headers="father">abc_woman Gupta</td>
+                    <td headers="mother">abc_woman Gupta</td>
+                    <td headers="phone">12345</td>
+                </tr>
+                <tr>
+                    <th id="man" rowspan="2">
+                        Man
+                    </th>
+                    <td headers="name">abc_man</td>
+                    <td headers="father">abc_man Gupta</td>
+                    <td headers="mother">abc_man Gupta</td>
+                    <td headers="phone">12345</td>
+                </tr>
+                <tr>
+                    <td headers="name">abc_man</td>
+                    <td headers="father">abc_man Gupta</td>
+                    <td headers="mother">abc_man Gupta</td>
+                    <td headers="phone">12345</td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <p>Строка номер один<br/>Переводимая строка номер одинПереводимая строка номер один</p>
+        <p>Строка номер два<br/>Переводимая строка номер один<wbr>Переводимая строка номер один</p>
+        <p>Строка номер три<br/>Переводимая строка номер один<wbr>Переводимая строка номер один</p>
+        <p>Строка номер четыре<br/>Переводимая строка номер один<wbr>Переводимая строка номер один</p>
+        </section>
+        <footer itemscope itemtype="https://schema.org/Organization">
+            <h2>Наши партнёры:</h2>
+            <tr>
+                {% for partner in partners %}
+                <th><a itemprop="sponsor" href={{partner.link}} target="_blank"><img src="{{partner.img.url}}" height="200"></a></th>
+                {% endfor %}
+            </tr>
+        </footer>
+    {% endblock %}

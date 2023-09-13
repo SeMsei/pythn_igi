@@ -1,0 +1,35 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+Купоны
+{% endblock %}
+{% block extra_head %}
+<meta
+    name="description"
+    content="Cтраница cо списком купонов" />
+<meta name="keywords" content="Book, bookshop, shop, coupons, discount">
+<meta name="author" content="Denis fomichevsjiy">
+{% endblock %}
+{% block content %}
+
+<footer>
+    <h1 align="center">Купоны</h1>
+</footer>
+<section itemscope itemtype="https://schema.org/Order">
+    <h2>Активные купоны:</h2>
+    {% for coupon in active_coupons %}
+        <h2>{{coupon.name}}</h2>
+        <p itemprop="discountCode">{{coupon.code}}</p>
+        <p itemprop="discount">{{coupon.discount}}</p>
+    {% endfor %}
+    <hr/>
+    <h2>Купоны в архиве:</h2>
+    {% for coupon in disabled_coupons %}
+        <h2><s>{{coupon.name}}</s></h2>
+        <p>{{coupon.code}}</p>
+        <p>{{coupon.discount}}</p>
+    {% endfor %}
+</section>
+
+{% endblock %}

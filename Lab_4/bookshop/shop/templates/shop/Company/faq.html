@@ -1,0 +1,24 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+Политика конфеденциальности
+{% endblock %}
+{% block extra_head %}
+<meta
+    name="description"
+    content="Cтраница c частозадаваемыми вопросами" />
+<meta name="keywords" content="Book, bookshop, shop, faq">
+<meta name="author" content="Denis fomichevsjiy">
+{% endblock %}
+{% block content %}
+
+<footer>
+    <h1 align="center">Статья</h1>
+</footer>
+<section>
+    <h2>{{faq.question}}</h2>
+    <p>{{faq.full_answer}}</p>
+</section>
+
+{% endblock %}

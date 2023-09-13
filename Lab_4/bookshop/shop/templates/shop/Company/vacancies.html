@@ -1,0 +1,28 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+Вакансии
+{% endblock %}
+{% block extra_head %}
+<meta
+    name="description"
+    content="Cтраница cо списком доступных вакансий" />
+<meta name="keywords" content="Book, bookshop, shop">
+<meta name="author" content="Denis fomichevsjiy">
+{% endblock %}
+{% block content %}
+
+<footer>
+    <h1 align="center">Вакансии</h1>
+</footer>
+<section itemscope itemtype="https://schema.org/JobPosting">
+    {% for vacancy in vacancies %}
+        <h2 itemprop="title">{{vacancy.name}}</h2>
+        <p itemprop="description">{{vacancy.description}}</p>
+        <p itemprop="baseSalary"><b>{{vacancy.salary}}</b></p>
+        <hr/>
+    {% endfor %}
+</section>
+
+{% endblock %}

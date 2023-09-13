@@ -1,0 +1,27 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+    Политика конфеденциальности
+{% endblock %}
+
+{% block extra_head %}
+    <meta
+        name="description"
+        content="Cтраница c информацией политике конфеденциальности" />
+    <meta name="keywords" content="Book, bookshop, shop">
+    <meta name="author" content="Denis fomichevsjiy">
+{% endblock %}
+
+{% block content %}
+    <footer>
+        <a name="top"></a>
+        <h1 align="center">Информация о компании</h1>
+    </footer>
+
+    <section>
+        {{privacy|safe}}
+        <a href="#top">Наверх</a>   
+        <a href="/media/privacy.docx" download>Скачать</a>
+    </section>
+{% endblock %}

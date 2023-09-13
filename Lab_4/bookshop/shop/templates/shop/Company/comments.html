@@ -1,0 +1,34 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+Комментарии
+{% endblock %}
+{% block extra_head %}
+<meta
+    name="description"
+    content="Cтраница c комментариями" />
+<meta name="keywords" content="Book, bookshop, shop, comment, comments">
+<meta name="author" content="Denis fomichevsjiy">
+{% endblock %}
+{% block content %}
+
+<footer>
+    <h1 align="center">Комментарии</h1>
+</footer>
+<section itemscope itemtype="https://schema.org/Review">
+    {% for comment in comments %}
+        <h2 itemprop="author">{{comment.author.first_name}}</h2>
+        <p itemprop="reviewBody">{{comment.text}}</p>
+        <p itemprop="reviewRating">
+            {% for i in "x"|rjust:comment.mark %}
+                ★
+            {% endfor %}
+        </p>
+        <p itemprop="datePublished">{{comment.date}}</p>
+        <hr/>
+    {% endfor %}
+    <a href="create/">Добавить комментарий</a>
+</section>
+
+{% endblock %}

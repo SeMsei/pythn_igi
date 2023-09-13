@@ -1,0 +1,30 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+ЧаВо
+{% endblock %}
+{% block extra_head %}
+<meta
+    name="description"
+    content="Cтраница c частозадаваемыми вопросами" />
+<meta name="keywords" content="Book, bookshop, shop, faq">
+<meta name="author" content="Denis fomichevsjiy">
+{% endblock %}
+{% block content %}
+
+<footer>
+    <h1 align="center">FAQ</h1>
+</footer>
+<section itemscope itemtype="https://schema.org/FAQPage">
+    {% for faq in faqs %}
+        <details>
+            <summary itemscope itemtype="https://schema.org/Question" itemprop="name">{{faq.question}}</summary>
+            <p itemscope itemtype="https://schema.org/Answer" itemprop="text">{{faq.answer}}</p>
+        </details>    
+        <p itemprop="datePublished">{{faq.date}}</p>
+        <hr/>
+    {% endfor %}
+</section>
+
+{% endblock %}
