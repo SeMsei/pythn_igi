@@ -6,51 +6,39 @@ from shop.models import Client
 from login.models import CustomUser
 from .models import Order
 from django.core.exceptions import PermissionDenied
+from .forms import OrderCreateForm
 
 
 def order_create(request):
-    '''
-    pt = dict()
-
-    x = []
-    y = []
-
-    for ord in Order.objects.all():
-        pt[str(ord.created.year) + '.'+str(ord.created.month)+'.'+str(ord.created.day)] = 0
-
-    for ord in Order.objects.all():
-        pt[str(ord.created.year) + '.'+str(ord.created.month)+'.'+str(ord.created.day)] += 1
-
-    for tmp in pt:
-        x.append(tmp)
-        y.append(pt[tmp])
-
-    plt.plot(x,y, 'ro')
-    plt.savefig('foo.png')
-    plt.clf()
-    '''
-
-
-
     if not request.user.is_authenticated:
         raise PermissionDenied("net dostpa")
 
     cart = Cart(request)
     if request.method == 'POST': 
         print(request.user.email)      
-        order = Order.objects.create(client = CustomUser.objects.filter(email=request.user.email).first())
-
-        for item in cart:
-            OrderItem.objects.create(order=order,
-                                        book=item['book'],
-                                        price=item['price'],
-                                        quantity=item['quantity'])
-            item['book'].purchase_count += item['quantity']
-            item['book'].save()
-        # очистка корзины
-        cart.clear()
-        return render(request, 'order/created.html',
-                        {'order': order})
+        #order = Order.objects.create(client = CustomUser.objects.filter(email=request.user.email).first())
+        form = OrderCreateForm(request.POST)
+        if form.is_valid():
+            #order = form.save(commit=False)
+            order = Order.objects.create(client = CustomUser.objects.filter(email=request.user.email).first())
+            if cart.coupon:
+                order.coupon = cart.coupon
+                order.discount = cart.coupon.discount
+            
+            for item in cart:
+                OrderItem.objects.create(order=order,
+                                            book=item['book'],
+                                            price=item['price'],
+                                            quantity=item['quantity'],
+                                            cost=item['price']*item['quantity'])
+                item['book'].purchase_count += item['quantity']
+                item['book'].save()
+            # очистка корзины
+            cart.clear()
+            order.get_total_cost()
+            order.save()
+            return render(request, 'order/created.html',
+                            {'order': order})
     
     return render(request, 'order/create.html',
                   {'cart': cart})
