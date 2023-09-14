@@ -37,6 +37,7 @@ def order_create(request):
             cart.clear()
             order.get_total_cost()
             order.save()
+            del request.session['coupon_id']
             return render(request, 'order/created.html',
                             {'order': order})
     

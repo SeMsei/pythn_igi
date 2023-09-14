@@ -17,5 +17,5 @@ def coupon_apply(request):
             
             request.session['coupon_id'] = coupon.id
         except ObjectDoesNotExist:
-            request.session['coupon_id'] = None
+            request.session['coupon_id'] = request.session['coupon_id']
     return redirect('cart:cart_detail')
