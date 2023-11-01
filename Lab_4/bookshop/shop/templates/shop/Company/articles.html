@@ -10,20 +10,19 @@
     content="Cтраница cо статьями на сайте" />
 <meta name="keywords" content="Book, bookshop, shop, book article, article">
 <meta name="author" content="Denis fomichevsjiy">
+<link href="{% static 'css/articles.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
 
-<footer>
-    <h1 align="center">Статьи</h1>
-</footer>
-<section itemscope itemtype="https://schema.org/Article">
+<h1 align="center">Статьи</h1>
+<section itemscope itemtype="https://schema.org/Article" class="article-cont">
     {% for article in articles %}
-        <article>
-            <h2 itemprop="name">{{article.title}}</h2>
+        <article class="article_list">
+            <h2 itemprop="name" class="article_list-header">{{article.title}}</h2>
             <img itemprop="image" src="{{article.img.url}}">
-            <p>{{article.short}}</p>
-            <a href ="{{article.id}}/">Читать далее</a>
-            <hr/>
+            <p class="article_list-content">{{article.short}}</p>
+            <p dir="ltr" itemprop="datePublished" class="article_list-footer">{{article.date}}</p>
+            <a href ="{{article.id}}/" class="article_list-btn">Читать далее</a>
         </article>
     {% endfor %}
 </section>

@@ -1,0 +1,45 @@
+.privacy {
+    margin-right: 200px;
+    margin-left:20px;
+    padding-left:5px;
+    line-height: 1.2;
+    color: #555;
+    text-transform: capitalize;
+}
+
+.privacy > h1 {
+    font-variant: small-caps;
+}
+
+.privacy::before {
+    content: "some text before";
+    font-style: italic;
+    font-size: 10px;
+    color:#ff00005a;
+}
+
+.privacy::after {
+    content: "some text after";
+    font-style: italic;
+    font-size: 10px;
+    color:#ff00005a;
+}
+
+.privacy p {
+    text-indent: 15px;
+    word-break: normal ;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    letter-spacing: 0.2em;
+}
+
+.privacy p::first-letter {
+    color: red;
+}
+
+.privacy p::selection {
+    color:#0f0;
+    background-color: #000;
+}

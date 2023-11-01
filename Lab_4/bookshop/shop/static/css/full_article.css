@@ -1,0 +1,38 @@
+.full_article {
+    columns: 3 300px; /* Расстояние между колонками */
+}
+
+.full_article-info {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+/* Стили для текста статьи */
+.full_article-text {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: left;
+    hyphens: auto;
+}
+
+/* Стили для названия статьи */
+.full_article-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;  
+}
+
+/* Стили для изображения статьи */
+.full_article-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.full_article-date {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: justify;
+}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Book, Author, Genre, Language, Client, History, \
                     Article, Adversisment, Partner, Vacancy, FAQ, WorkerPosition, \
-                    Comment
+                    Comment, RotationTime
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
@@ -59,3 +59,6 @@ class WorkerPositionAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['date', 'mark', 'author', 'text']
     
+@admin.register(RotationTime)
+class RotationTimeAdmin(admin.ModelAdmin):
+    list_display = ['time']

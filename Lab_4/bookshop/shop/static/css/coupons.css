@@ -1,0 +1,38 @@
+.inactive-coupons {
+    background-color: #f2dede;
+            border: 1px solid #a94442;
+            color: #a94442;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+}
+
+.active-coupons {
+    background-color: #dff0d8;
+    border: 1px solid #3c763d;
+    color: #3c763d;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.hotometer {
+    color: black;
+    border: 1px solid aqua;
+    border-radius: 50%;
+}
+
+.container {
+    width: 200px;
+    height: 14pt;
+    background-color: lightgray;
+    position: relative;
+  }
+  
+  .colorFill {
+    width: 50%;
+    height: 100%;
+    background-color: red;
+    position: absolute;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }

@@ -1,0 +1,82 @@
+.container {
+    background-color: #fafafa;
+    transform-origin: top left;
+    transition: transform 0.5s linear;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 50px;
+  }
+  .container.lakisa-menu {
+    transform: rotate(-20deg);
+  }
+  .circle-container {
+    position: fixed;
+    top: -100px;
+    left: -100px;
+  }
+  .circle {
+    background-color: #0063b4;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    position: relative;
+    transition: transform 0.5s linear;
+  }
+  .container.lakisa-menu .circle {
+    transform: rotate(-70deg);
+  }
+  .circle button {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100px;
+    background: transparent;
+    border: 0;
+    font-size: 26px;
+    color: #fff;
+  }
+  .circle button:focus {
+    outline: none;
+  }
+  .circle button#fongola {
+    left: 60%;
+  }
+  .circle button#kanga {
+    top: 60%;
+    transform: rotate(90deg);
+    transform-origin: top left;
+  }
+  .container.lakisa-menu + nav li {
+    transform: translateX(0);
+    transition-delay: 0.3s;
+  }
+  nav {
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    z-index: 100;
+  }
+  nav ul {
+    list-style-type: none;
+    padding-left: 30px;
+  }
+  nav ul li {
+    text-transform: uppercase;
+    color: #fff;
+    margin: 40px 0;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in;
+  }
+  nav ul li i {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  nav ul li + li {
+    margin-left: 15px;
+    transform: translateX(-150%);
+  }
+  nav ul li + li + li {
+    margin-left: 30px;
+    transform: translateX(-200%);
+  }

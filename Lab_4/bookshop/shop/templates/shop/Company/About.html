@@ -11,35 +11,33 @@
 <meta name="keywords" content="Book, bookshop, shop">
 <meta name="author" content="Denis fomichevsjiy">
 {% endblock %}
-{% block content %}
-        <footer>    
+{% block content %} 
             <a href="top"></a>
             <h1 align="center">Информация о компании</h1>
-        </footer>
         <section>
             <h2>Информация о компании</h2>
             <p itemprop="legalName"><strong><font size="+4">PinguinShop</font></strong></p>
         </section>
         <section>
             <h2>Видео и гимн компании компании</h2>
-            <figure>
+            <figure class="styled-audio">
                 <figcaption>Прослушать наш гимн:</figcaption>
                 <audio controls src="/media/Mareux - Night Vision.mp3">
                   <a href="/media/cc0-audio/Mareux - Night Vision.mp3"> Download audio </a>
                 </audio>
             </figure>
-            <figure>
+            <figure class="styled-video">
                 <video width="300" controls="controls" itemscope itemtype="https://schema.org/VideoObject">
                     <source itemprop="video" src="/media/Освежи меня, дай мне свежесть.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
                     <a href="/media/Освежи меня, дай мне свежесть.mp4" download>Скачайте видео</a>
                 </video>
             </figure>
-            <iframe src="https://www.youtube.com/embed/DLBxC8uGPu4"></iframe>
+            <iframe class="youtube-video" src="https://www.youtube.com/embed/DLBxC8uGPu4"></iframe>
         </section>
         <section>
             <h2>Логотип компании</h2>
             
-            <img 
+            <img class="logo-img"
             src="/media/logo.jpg"              
             srcset="/media/logo.jpg 200w"  
             sizes="(max-width: 600px) 50vw, (max-width: 1200px) 30vw, 300px"  
@@ -48,44 +46,40 @@
         </section>
         <section>
             <h2>История компании</h2>
-            <dl>
+            <dl class="company-history">
                 {% for el in history %}
-                    <dt><time datetime="{{ el.0 }}"><b>{{ el.0 }}</b></time></dt>
+                <section class="company-history-item">
+                    <dt class="company-history-year"><time datetime="{{ el.0 }}"><b>{{ el.0 }}</b></time></dt>
                         {% for descrs in el.1 %}
-                            <dd>{{descrs}}</dd>
+                            <dd class="company-history-description">{{descrs}}</dd>
                         {% endfor %}
+                    </section>
                 {% endfor %}
             </dl>
         </section>
-        <section>
-            <h2>Реквизиты</h2>
-            <a href="mailto:fomichevsjiy@gmail.com" itemprop="emil">Почта</a>
-            <a href="tel:+375441234567" itemprop="telephone">Телефон</a>
+        <section class="requisites">
+            <h2>Реквизиты:</h2>
+            <p>Почта: <a href="mailto:fomichevsjiy@gmail.com" itemprop="emil">fomichevsjiy@gmail.com</a></p>
+            <p>Телефон: <a href="tel:+375441234567" itemprop="telephone">+375441234567</a></p>
         </section>
-        <section>
+        <section class="lisence lisence-border-image">
+            <section class="lisence-content">
             <h2>Лицензия</h2>
             <!--<img src="/media/cert.jpg" height="800">-->
-            <small>
-            ООО «Приносим радость»
-            <br>
-            Юридический адрес: 220073, Республика Беларусь, г. Минск, ул. Скрыганова, д. 14, каб. 36
-            <br>
-            УНП 193067319
-            <br>
-            Адрес для почтовых отправлений: 220117, а/я 162.
-            <br>
-            Свидетельство о государственной регистрации №193067319 от 19 апреля 2018 г. выдано Минским горисполкомом
-            <br>
-            Зарегистрировано Министерством информации Республики Беларусь 11 мая 2018 г. в Государственном реестре издателей, изготовителей и распространителей печатных изданий Республики Беларусь в качестве распространителя печатных изданий за №3/1656
-            <br>
-            Зарегистрирован в Торговом реестре Республики Беларусь 31 мая 2018 г. за №416870
-            <br>
-            Время работы: <time>09:00</time> - <time>17:30</time> пн-пт.
-            <br>
-            Жалобы и предложения принимаются и оперативно обрабатываются в рабочее время с помощью электронной почты, на форуме, а также по телефонам 695-25-25 (МТС, A1, life:) ежедневно с <time>8:00</time> до <time>22:00</time>.
-            <br>
-            <br>
+                <small>
+                    <h1>Лицензия</h1>
+                <p>ООО «Приносим радость»</p>
+                <p>Юридический адрес: 220073, Республика Беларусь, г. Минск, ул. Скрыганова, д. 14, каб. 36</p>
+                <p>УНП 193067319</p>
+                <p>Адрес для почтовых отправлений: 220117, а/я 162.</p>
+                <p>Свидетельство о государственной регистрации №193067319 от 19 апреля 2018 г. выдано Минским горисполкомом</p>
+                <p>Зарегистрировано Министерством информации Республики Беларусь 11 мая 2018 г. в Государственном реестре издателей, изготовителей и распространителей печатных изданий Республики Беларусь в качестве распространителя печатных изданий за №3/1656</p>
+                <p>Зарегистрирован в Торговом реестре Республики Беларусь 31 мая 2018 г. за №416870</p>
+                <section class="lisence-signature"> 
+                    <img src="https://i.siteapi.org/58-pJqDys5-qiXfG7mt9NiqJPVo=/0x0:1200x457/a7816ad894f6657.ru.s.siteapi.org/img/1p7fx3w9o1q84kocs0kcck4c0ko80g" alt="Подпись">
+                </section>    
             </small>
-            <a href="#top">Наверх</a>
+            </section>
         </section>
+        <a href="#top">Наверх</a>
 {% endblock %}

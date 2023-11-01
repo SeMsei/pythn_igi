@@ -140,6 +140,10 @@ class Comment(models.Model):
     author = models.ForeignKey(CustomUser, on_delete = models.CASCADE)
     text = models.TextField()
 
+class RotationTime(models.Model):
+    time = models.IntegerField()
+
+
 '''
 class BookInstance(models.Model):
     uniqueId = models.SlugField(max_length=200, db_index=True)

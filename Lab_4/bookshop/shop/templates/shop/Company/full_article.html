@@ -10,16 +10,19 @@
     content="Cтраница cтатьи" />
 <meta name="keywords" content="Book, bookshop, shop, article">
 <meta name="author" content="Denis fomichevsjiy">
+<link href="{% static 'css/full_article.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
 
-<footer itemscope itemtype="https://schema.org/Article">
-    <h1 align="center" itemprop="name">Статья {{article.title}}</h1>
-</footer>
-<article itemscope itemtype="https://schema.org/Article">
-    <img itemprop="image" src="{{article.img.url}}">
-    <p itemprop="articleBody">{{article.full}}</p>
-    <hr/>
+<h1 align="center" itemprop="name">Статья</h1>
+<article itemscope itemtype="https://schema.org/Article" class="full_article">
+    <section class="full_article-info">
+        <h2 class="full_article-title">{{article.title}}</h2>
+        <img itemprop="image" src="{{article.img.url}}" class="full_article-img">
+        <p dir="ltr" itemprop="datePublished" class="full_article-date">{{article.date}}</p>
+    </section>
+    <p itemprop="articleBody" class="full_article-text">{{article.full}}</p>
+    
 </article>
 
 {% endblock %}

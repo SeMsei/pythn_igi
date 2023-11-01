@@ -10,26 +10,83 @@
     content="Cтраница cо списком купонов" />
 <meta name="keywords" content="Book, bookshop, shop, coupons, discount">
 <meta name="author" content="Denis fomichevsjiy">
+<link href="{% static 'css/coupons.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
 
-<footer>
-    <h1 align="center">Купоны</h1>
-</footer>
+<h1 align="center">Купоны</h1>
 <section itemscope itemtype="https://schema.org/Order">
-    <h2>Активные купоны:</h2>
-    {% for coupon in active_coupons %}
-        <h2>{{coupon.name}}</h2>
-        <p itemprop="discountCode">{{coupon.code}}</p>
-        <p itemprop="discount">{{coupon.discount}}</p>
-    {% endfor %}
+    <section>
+        <h2>Активные купоны:</h2>
+        <ul>
+            {% for coupon in active_coupons %}
+            <li class="active-coupons"><p>{{coupon.name}}</p>
+                <ul>
+                <li><p itemprop="discountCode">{{coupon.code}}</p></li>
+                <li><p itemprop="discount"><div class="discount">{{coupon.discount}}%</div></p></li>
+            <li><div class="container">
+                <div class="colorFill"></div>
+              </div></li>    
+            </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
     <hr/>
-    <h2>Купоны в архиве:</h2>
-    {% for coupon in disabled_coupons %}
-        <h2><s>{{coupon.name}}</s></h2>
-        <p>{{coupon.code}}</p>
-        <p>{{coupon.discount}}</p>
-    {% endfor %}
+    <section >
+        <h2>Купоны в архиве:</h2>
+        <ul>
+            {% for coupon in disabled_coupons %}
+                <li class="inactive-coupons"><p><s>{{coupon.name}}</p></h2>
+                <ul>
+                    <li><p>{{coupon.code}}</p></li>
+                    <li><p><div class="discount">{{coupon.discount}}%</div></p></li>
+                    <li><div class="container">
+                        <div class="colorFill"></div>
+                      </div></li>  
+                </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 </section>
+<script>
+const coupons = document.querySelectorAll('.active-coupons');
 
+coupons.forEach(
+    coupon=>{
+        var discount = coupon.getElementsByClassName("discount")[0].innerText;
+        coupon.querySelector(".colorFill").style.width = discount;
+
+        discount.replace('%', '');
+        disc_size = parseInt(discount);
+        let r = 255;
+        let g;
+        let b;
+        g = 255-disc_size*2.55;
+        b = 255-disc_size*2.55;
+        console.log(`rgb(${r}, ${g}, ${b})`);
+        coupon.querySelector(".colorFill").style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    }
+);
+
+const in_coupons = document.querySelectorAll('.inactive-coupons');
+
+in_coupons.forEach(
+    coupon=>{
+        var discount = coupon.getElementsByClassName("discount")[0].innerText;
+        coupon.querySelector(".colorFill").style.width = discount;
+
+        discount.replace('%', '');
+        disc_size = parseInt(discount);
+        let r = 255;
+        let g;
+        let b;
+        g = 255-disc_size*2.55;
+        b = 255-disc_size*2.55;
+        console.log(`rgb(${r}, ${g}, ${b})`);
+        coupon.querySelector(".colorFill").style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    }
+);
+</script>
 {% endblock %}

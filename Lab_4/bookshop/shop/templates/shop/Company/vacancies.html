@@ -10,6 +10,7 @@
     content="Cтраница cо списком доступных вакансий" />
 <meta name="keywords" content="Book, bookshop, shop">
 <meta name="author" content="Denis fomichevsjiy">
+<link href="{% static 'css/vacancies.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
 
@@ -18,10 +19,11 @@
 </footer>
 <section itemscope itemtype="https://schema.org/JobPosting">
     {% for vacancy in vacancies %}
-        <h2 itemprop="title">{{vacancy.name}}</h2>
-        <p itemprop="description">{{vacancy.description}}</p>
-        <p itemprop="baseSalary"><b>{{vacancy.salary}}</b></p>
-        <hr/>
+    <div class="vacancies">
+        <h2 itemprop="title" class="vacancy_name">{{vacancy.name}}</h2>
+        <p itemprop="description" class="vacancy_description">{{vacancy.description}}</p>
+        <p itemprop="baseSalary" class="vacancy_salary"><b>{{vacancy.salary}}</b></p>
+    </div>
     {% endfor %}
 </section>
 

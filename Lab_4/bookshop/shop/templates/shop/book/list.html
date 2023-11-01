@@ -12,7 +12,7 @@
         </li>
         {% for c in genres %}
         <li {% if genre.name == c.name %}class="selected" {% endif %}>
-            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+            <a href="{{ c.get_absolute_url }}" class="nav-a">{{ c.name }}</a>
         </li>
         {% endfor %}
     </ul>
@@ -30,16 +30,74 @@
             <button type="submit" name="sort" value="descending">Сортировать по убыванию</button>
         </form>
     </h1>
+    <section class="book-cont">
     {% for book in books %}
-    <div class="item">
-        <a href="{{ book.get_absolute_url }}">
-            <img src="{% if book.image %}{{ book.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}">
-        </a>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
-        <br>
-        {{ book.cost }}
-    </div>
-
+      <div class="card">
+          <div class="glow">
+              <a href="{{ book.get_absolute_url }}">
+                  <img src="{% if book.image %}{{ book.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}">
+              </a>
+              <br>
+              <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+              <br>
+              {{ book.cost }}
+            </div>
+          </div>
     {% endfor %}
+    <script>
+        if ("{{is_auth}}" == "False")
+          localStorage.clear();
+
+        const card = document.querySelectorAll('.card');
+let bounds;
+
+card.forEach(
+$card=>{
+function rotateToMouse(e) {
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+  const leftX = mouseX - bounds.x;
+  const topY = mouseY - bounds.y;
+  const center = {
+    x: leftX - bounds.width / 2,
+    y: topY - bounds.height / 2
+  }
+  const distance = Math.sqrt(center.x**2 + center.y**2);
+  
+  $card.style.transform = `
+    scale3d(1.07, 1.07, 1.07)
+    rotate3d(
+      ${center.y / 100},
+      ${-center.x / 100},
+      0,
+      ${Math.log(distance)* 2}deg
+    )
+  `;
+  
+  $card.querySelector('.glow').style.backgroundImage = `
+    radial-gradient(
+      circle at
+      ${center.x * 2 + bounds.width/2}px
+      ${center.y * 2 + bounds.height/2}px,
+      #ffffff55,
+      #0000000f
+    )
+  `;
+}
+
+$card.addEventListener('mouseenter', () => {
+  bounds = $card.getBoundingClientRect();
+  document.addEventListener('mousemove', rotateToMouse);
+});
+
+$card.addEventListener('mouseleave', () => {
+  document.removeEventListener('mousemove', rotateToMouse);
+  $card.style.transform = '';
+  $card.style.background = '';
+  
+});
+});
+    </script>
+</section>
 </div>
 {% endblock %}

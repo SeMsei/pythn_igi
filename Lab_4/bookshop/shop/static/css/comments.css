@@ -1,0 +1,47 @@
+.review {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Стили для имени пользователя */
+.review .review_author {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Стили для текста отзыва */
+.review .review_text-text {
+    margin-top: 5px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* Стили для рейтинга (звездочек) */
+.review .review_rating {
+    color: #ffcc00; /* Цвет звездочек */
+    font-size: 20px;
+}
+
+/* Стили для даты отзыва */
+.review .review_date {
+    font-size: 12px;
+    color: #888;
+}
+
+.create_review-btn {
+    display: inline-block;
+    padding: 10px 20px; /* Регулируйте отступы в зависимости от ваших предпочтений */
+    background-color: #007bff; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание ссылки */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругляем углы */
+    cursor: pointer; /* Задаем курсор в виде указателя при наведении */
+    font-size: 16px; /* Размер шрифта */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}

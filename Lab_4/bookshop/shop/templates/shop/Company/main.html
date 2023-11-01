@@ -12,15 +12,14 @@
 <meta name="author" content="Denis fomichevsjiy">
 {% endblock %}
 {% block content %}
-        <footer>
-            <h1 align="center">Главная</h1>
-        </footer>
+
+        <h1 align="center">Главная</h1>
         <hr/>
-        <article itemscope itemtype="https://schema.org/Article">
-            <h2>Последняя статья:</h2>
-            <p dir="ltr" itemprop="name"><b>{{last_article.title}}</b></p>
-            <p dir="ltr" itemprop="articleBody">{{last_article.short}}</p>
-            <p dir="ltr" itemprop="datePublished">{{last_article.date}}</p>
+        <h2>Последняя статья:</h2>
+        <article itemscope itemtype="https://schema.org/Article" class="article">
+            <p dir="ltr" itemprop="name" class="article-header"><b>{{last_article.title}}</b></p>
+            <p dir="ltr" itemprop="articleBody" class="article-content">{{last_article.short}}</p>
+            <p dir="ltr" itemprop="datePublished" class="article-footer">{{last_article.date}}</p>
         </article>
         <hr/>
         <section itemscope itemtype="https://schema.org/AdvertiserContentArticle">
@@ -96,11 +95,7 @@ ReadFromBuffer ENDP
         </section>
         <section >
             <table>
-                <tr>
-                    <td></td>
-                </tr>
-            </table>
-            <table>
+                <caption>Table caption</caption>
                 <tr>
                     <th></th>
                     <th id="name" colspan="3" >Name</th>
@@ -134,7 +129,7 @@ ReadFromBuffer ENDP
                     <td headers="name">abc_man</td>
                     <td headers="father">abc_man Gupta</td>
                     <td headers="mother">abc_man Gupta</td>
-                    <td headers="phone">12345</td>
+                    <td headers="phone"></td>
                 </tr>
             </table>
         </section>
@@ -144,13 +139,176 @@ ReadFromBuffer ENDP
         <p>Строка номер три<br/>Переводимая строка номер один<wbr>Переводимая строка номер один</p>
         <p>Строка номер четыре<br/>Переводимая строка номер один<wbr>Переводимая строка номер один</p>
         </section>
+        <h1>Управляющие элементы</h1>
+
+    <form id="myForm">
+        <!-- Text Input -->
+        <section >
+            <label for="textInput">Текстовое поле:</label>
+            <input tabindex="-1" type="text" id="textInput" name="textInput" required>
+        </section>
+
+        <!-- Email Input -->
+        <section>
+            <labe for="emailInput">Электронная почта:</label>
+            <input tabindex="-1" type="email" id="emailInput" name="emailInput" required>
+        </section>
+
+        <!-- Password Input -->
+        <section tabindex="-1">
+            <label for="passwordInput">Пароль:</label>
+            <input tabindex="-1" type="password" id="passwordInput" name="passwordInput" required>
+        </section>
+
+        <!-- Checkbox -->
+        <section>
+            <input type="checkbox" id="checkboxInput" name="checkboxInput">
+            <label  for="checkboxInput">Галочка</label>
+        </section>
+
+        <!-- Radio Buttons -->
+        <section>
+            <input type="radio" id="radioInput1" name="radioGroup" value="option1" required>
+            <label for="radioInput1">Опция 1</label>
+            <input type="radio" id="radioInput2" name="radioGroup" value="option2" required>
+            <label for="radioInput2">Опция 2</label>
+        </section>
+
+        <!-- Select Dropdown -->
+        <section>
+            <label for="selectInput">Выпадающий список:</label>
+            <select id="selectInput" name="selectInput" required>
+                <option value="">Выберите...</option>
+                <option value="option1">Опция 1</option>
+                <option value="option2">Опция 2</option>
+            </select>
+        </section>
+
+        <!-- Submit Button -->
+        <button type="submit">Отправить</button>
+    </form>
+    <section class="marked-list">
+        <h2 class="my-class">Различные шрифты</h2>
+        <ul>
+            <li><i>курсив</i> - иностранные слова, технические термины</li>
+            <li><small>шрифт на 1 меньше стандартного</small> - «мелкий шрифт» (оговорки, уточнения)</li>
+            <li><strong>жирный акцент</strong> - важность текста</li>
+            <li><b>жирный шрифт</b> - привлечение внимания (ключевые слова)</li>
+            <li><em>акцентирование курсивом</em> - логическое ударение</li>
+            <li><s>зачеркнутый текст</s> - неточное или неактуальное содержимое</li>
+            <li><u>подчеркивание</u> - В HTML5 объявлен устаревшим</li>
+            <li><sup>нижний (верхний) индекс</sup></li>
+            <li><sub>нижний (верхний) индекс</sub></li>
+        </ul>
+    </section>
+    <section class="blockquote-container">
+        <blockquote lang="en">
+            This is an English quote.
+        </blockquote>
+        
+        <blockquote lang="fr">
+            C'est une citation en français.
+        </blockquote>
+        
+    </section>
+    <section class="styled-input">
+        <label for="text-input">Обязательное текстовое поле:</label>
+        <input type="text" id="text-input" name="text" required>
+
+        <br>
+
+        <label for="number-input">Числовое поле (вне диапазона):</label>
+        <input type="number" id="number-input" name="number" min="1" max="10" value="15">
+
+        <br>
+
+        <label for="checkbox-input">Флажок:</label>
+        <input type="checkbox" id="checkbox-input" name="checkbox">
+        <label for="checkbox-input">Включенный флажок</label>
+
+        <br>
+
+        <label for="radio-input1">Переключатель 1:</label>
+        <input type="radio" id="radio-input1" name="radio" value="option1">
+        <label for="radio-input1">Включенный переключатель 1</label>
+
+        <br>
+
+        <label for="radio-input2">Переключатель 2:</label>
+        <input type="radio" id="radio-input2" name="radio" value="option2" disabled>
+        <label for="radio-input2">Выключенный переключатель 2</label>
+
+        <br>
+        
+        <label for="radio-input1">Переключатель 3:</label>
+        <input type="radio" id="radio-input1" name="radio" value="option1">
+        <label for="radio-input1">Включенный переключатель 3</label>
+
+        <br>
+
+        <input type="submit" value="Отправить">
+    </section>
+    
+    <section class="daughter-selector">
+        <div>
+            <span
+              >Span 1 в div
+              <span>Span 2 в span, который в div</span>
+            </span>
+          </div>
+          <span>Span 3. Не в div вообще</span>
+    </section>
     </section>
         <footer itemscope itemtype="https://schema.org/Organization">
             <h2>Наши партнёры:</h2>
-            <tr>
-                {% for partner in partners %}
-                <th><a itemprop="sponsor" href={{partner.link}} target="_blank"><img src="{{partner.img.url}}" height="200"></a></th>
-                {% endfor %}
-            </tr>
+            {% for partner in partners %}
+                <div class="block1">
+                    <a itemprop="sponsor" href="{{partner.link}}" target="_blank"><img class="anim-img" src="{{partner.img.url}}" height="200"></a>
+                    <a itemprop="sponsor" href="{{partner.link}}" target="_blank">{{partner.company_name}}</a>
+                </div>
+            {% endfor %}
         </footer>
+        <script>
+    const banners = document.querySelectorAll('.block1');
+    let currentBanner = 0;
+    let rotationInterval;
+    let isPageFocused = true;
+
+    function showBanner(index) {
+      banners.forEach((banner, i) => {
+        if (i === index) {
+          banner.style.display = 'flex';
+        } else {
+          banner.style.display = 'none';
+        }
+      });
+    }
+
+    function startRotation() {
+        const interval = parseInt("{{time}}")*1000;
+        console.log(interval);
+      rotationInterval = setInterval(() => {
+        if (document.hasFocus()) {
+          currentBanner = (currentBanner + 1) % banners.length;
+          showBanner(currentBanner);
+        }
+      }, interval);
+    }
+
+    function stopRotation() {
+      clearInterval(rotationInterval);
+    }
+
+    // Initial banner display
+    showBanner(currentBanner);
+    startRotation();
+        </script>
+        {%if user.is_superuser%}
+        <form method="POST">
+            <label for="interval">Интервал (в секундах):</label>
+            <input type="number" id="interval" value="5" name="time">
+            <input type="submit">
+        </form>
+        {%endif%}
+        
     {% endblock %}

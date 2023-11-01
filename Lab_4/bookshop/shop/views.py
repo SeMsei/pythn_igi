@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Book, Genre, Language, Author, History, Article, Adversisment, \
-                    Partner, Vacancy, FAQ, WorkerPosition, Comment
+                    Partner, Vacancy, FAQ, WorkerPosition, Comment, RotationTime
 from coupons.models import Coupon
 from login.models import CustomUser
 from cart.forms import CartAddBookForm
@@ -22,7 +22,7 @@ def book_list(request, book_genre_name = None):
     books = Book.objects.all()
     sort_t = request.GET.get('sort')
     
-    
+    is_auth = request.user.is_authenticated
 
 
     if (book_genre_name):
@@ -36,7 +36,7 @@ def book_list(request, book_genre_name = None):
 
     return render(request,
                   'shop/book/list.html',
-                  {'genre': genre_, 'genres':genres, 'books':books})
+                  {'genre': genre_, 'genres':genres, 'books':books, 'is_auth':is_auth})
 
 
 def book_detail(request, id):
@@ -128,13 +128,17 @@ def privacy(request):
     doc = Document('../bookshop/media/privacy.docx')
     html_code = ""
 
+    paragraphs = list()
+
     for paragraph in doc.paragraphs:
-        paragraph_html = paragraph.text.replace('\n', '<br>')
-        html_code += f"<p>{paragraph_html}</p>"
+        paragraph_html = paragraph.text.split('\n')# replace('\n', '<br>')
+        paragraph_html = list(filter(None, paragraph_html))
+        #html_code += f"<p>{paragraph_html}</p>"
+        paragraphs.append(paragraph_html)
 
     
 
-    return render(request, "shop/Company/privacy.html", {"privacy": html_code})
+    return render(request, "shop/Company/privacy.html", {"paragraphs": paragraphs})#{"privacy": html_code})
     
 def about_company(request):
     hist = History.objects.all()
@@ -160,9 +164,17 @@ def about_company(request):
     return render(request, "shop/Company/About.html", {"history": out})
 
 def main(request):
+    if (request.method == "POST"):
+        tmp = RotationTime.objects.get(id=1)
+        tmp.time = request.POST.get('time')
+        tmp.save()
+
+    tmp = RotationTime.objects.get(id=1)
+
     return render(request, "shop/Company/main.html", {"last_article": list(Article.objects.all())[-1],
                                                       "adv": list(Adversisment.objects.all())[0],
-                                                      "partners": list(Partner.objects.all())})
+                                                      "partners": list(Partner.objects.all()), 
+                                                      "time": tmp.time})
 
 def articles(request):
     return render(request, "shop/Company/articles.html", {"articles": list(Article.objects.all())})
@@ -210,3 +222,10 @@ def comment_create(request):
 def comments_list(request):
     comments = Comment.objects.all()
     return render(request, "shop/Company/comments.html", {"comments": comments})
+
+def sandbox(request):
+    is_auth = request.user.is_authenticated
+    return render(request, "shop/sandbox.html", {"is_auth":is_auth})
+
+def ham(request):
+    return render(request, 'shop/hamburger.html')

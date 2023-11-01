@@ -10,23 +10,42 @@
     content="Cтраница cо списком работников" />
 <meta name="keywords" content="Book, bookshop, shop">
 <meta name="author" content="Denis fomichevsjiy">
+<link href="{% static 'css/workers.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
 
-<footer>
-    <h1 align="center" itemprop="page_name">Наши работники</h1>
-</footer>
-<section itemprop="employee">
+<h1 align="center" itemprop="page_name">Наши работники</h1>
+<section class="workers-list">
     {% for worker in workers %}
-        <img src="{{worker.img.url}}">
-        <p>Имя: {{worker.worker.first_name}}</p>
-        <p>Фамилия: {{worker.worker.last_name}}</p>
-        <p>Дата рождения: {{worker.worker.date_of_birth}}</p>
-        <p>Почта: {{worker.worker.email}}</p>
-        <p>Телефон: {{worker.worker.phone_number}}</p>
-        <p>Должность: {{worker.description}}</p>
-        <hr/>
+        <div class="worker" itemprop="employee">
+            <img src="{{worker.img.url}}" class="employee-photo">
+            <div class="worker-details">
+            <p>Имя: {{worker.worker.first_name}}</p>
+            <p>Фамилия: {{worker.worker.last_name}}</p>
+            <p>Дата рождения: {{worker.worker.date_of_birth}}</p>
+            <p>Почта: {{worker.worker.email}}</p>
+            <p>Телефон: {{worker.worker.phone_number}}</p>
+            <p>Должность: {{worker.description}}</p>
+        </div>
+    </div>
     {% endfor %}
 </section>
+
+<script>
+    const cards = document.getElementsByClassName("worker");
+    console.log(cards);
+
+    for (var i = 0; i < cards.length; i++) {
+        const details =  document.getElementsByClassName("worker")[i].querySelector('.worker-details');
+
+        document.getElementsByClassName("worker")[i].addEventListener('mouseenter', () => {
+        details.style.opacity = '1';
+        });
+
+        document.getElementsByClassName("worker")[i].addEventListener('mouseleave', () => {
+            details.style.opacity = '0';
+        });
+    }
+</script>
 
 {% endblock %}

@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-$))3cf0%*#$to=_w#m6)pir2ly9_67ygrg&0b2tvw3#kgm2(vh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'login',
     'analyzer.apps.AnalyzerConfig',
     'coupons',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [

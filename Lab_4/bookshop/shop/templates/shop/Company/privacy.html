@@ -11,17 +11,23 @@
         content="Cтраница c информацией политике конфеденциальности" />
     <meta name="keywords" content="Book, bookshop, shop">
     <meta name="author" content="Denis fomichevsjiy">
+    <link href="{% static 'css/privacy.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <footer>
-        <a name="top"></a>
-        <h1 align="center">Информация о компании</h1>
-    </footer>
+    <a name="top"></a>
+    
 
-    <section>
-        {{privacy|safe}}
-        <a href="#top">Наверх</a>   
-        <a href="/media/privacy.docx" download>Скачать</a>
+    <section class="privacy">
+        <h1 align="center">Информация о компании</h1>
+        {% for paragraph in paragraphs %}
+            <p lang="ru">
+                {% for b in paragraph %}
+                    {{b}}</br>
+                {% endfor %}
+            </p>
+        {% endfor %}
     </section>
+    <a href="#top">Наверх</a>   
+        <a href="/media/privacy.docx" download>Скачать</a>
 {% endblock %}

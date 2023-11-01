@@ -1,5 +1,6 @@
 {% extends "shop/base.html" %}
 {% load static %}
+{% load mathfilters %}
 
 {% block title %}
 Комментарии
@@ -10,25 +11,25 @@
     content="Cтраница c комментариями" />
 <meta name="keywords" content="Book, bookshop, shop, comment, comments">
 <meta name="author" content="Denis fomichevsjiy">
+<link href="{% static 'css/comments.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
 
-<footer>
-    <h1 align="center">Комментарии</h1>
-</footer>
+<h1 align="center">Комментарии</h1>
 <section itemscope itemtype="https://schema.org/Review">
     {% for comment in comments %}
-        <h2 itemprop="author">{{comment.author.first_name}}</h2>
-        <p itemprop="reviewBody">{{comment.text}}</p>
-        <p itemprop="reviewRating">
-            {% for i in "x"|rjust:comment.mark %}
-                ★
-            {% endfor %}
-        </p>
-        <p itemprop="datePublished">{{comment.date}}</p>
-        <hr/>
+        <section class="review">
+            <h2 itemprop="author" class="review_author">{{comment.author.first_name}}</h2>
+            <p itemprop="reviewBody" class="review_text">{{comment.text}}</p>
+            <p itemprop="reviewRating" class="review_rating">
+                {{ "★ "|mul:comment.mark}}
+                {{ 5|sub:comment.mark|mul:"☆ " }}
+                
+            </p>
+            <p itemprop="datePublished" class="review_date">{{comment.date}}</p>
+        </section>
     {% endfor %}
-    <a href="create/">Добавить комментарий</a>
+    <a href="create/" class="create_review-btn">Добавить комментарий</a>
 </section>
 
 {% endblock %}

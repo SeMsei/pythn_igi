@@ -9,69 +9,120 @@
         <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}">
     </head>
     <body>
-        <div id="header">
-            <a href="/" class="logo">My shop</a>
-            <div>
-            Current Date <span id='date'></span>.
-            Current time <span id='time'></span>
-            Current time zone <span id='zone'></span>
-        </div>
-            <script>
-                const today = new Date();
-                const yyyy = today.getFullYear();
-                let mm = today.getMonth() + 1;
-                let dd = today.getDate();
-                let h = today.getHours();
-                if (h<10)
-                    h = '0' + h;
-                let min = today.getMinutes();
-                if (min < 10)
-                    min = '0' + min;
-                let sec = today.getSeconds();
-                if (sec < 10)
-                    sec = '0' + sec;
+        <header id="header">
+            <div id="header"> <!---->
+                <nav>
+                    <div class="win-grid">
+                        <button class="animated-button"><a href="/about/" class="nav-a">О компании&nbsp;</a></button>
+                        <button class="animated-button"><a href="/faq/" class="nav-a">Вопросы&nbsp;</a></button>
+                        <button class="animated-button"><a href="/workers/" class="nav-a">Наши работники&nbsp;</a></button>
+                        <button class="animated-button"><a href="/privacy/" class="nav-a">Политика конфеденциальности&nbsp;</a></button>
+                        <button class="animated-button"><a href="/main/" class="nav-a">Главная&nbsp;</a></button>
+                        <button class="animated-button"><a href="/vacancies/" class="nav-a">Вакансии&nbsp;</a>
+                            <button class="animated-button"><a href="/coupons/" class="nav-a">Купоны&nbsp;</a></button>
+                            <button class="animated-button"><a href="/articles/" class="nav-a">Статьи&nbsp;</a></button>
+                            <button class="animated-button"><a href="/comments/" class="nav-a">Комментарии</a></button>
+                            <button class="animated-button"><a href="/sandbox/" class="nav-a">Песочница</a></button>
+                            <br>
+                            <script>
+                                
+                                const buttons = document.getElementsByClassName("animated-button");
+                                
+                                for (let i = 0; i < buttons.length; i++) {
+                                        console.log(1);
+                                        
+                                        buttons[i].addEventListener("mousemove", (e) => {
+                                        const x = e.pageX - buttons[i].offsetLeft;
+                                        const y = e.pageY - buttons[i].offsetTop;
+                                        
+                                        const centerX = buttons[i].offsetWidth / 2;
+                                        const centerY = buttons[i].offsetHeight / 2;
+                                        
+                                        const deltaX = x - centerX;
+                                        const deltaY = y - centerY;
+                                        
+                                        const scaleX = 1 + Math.abs(deltaX) / (buttons[i].offsetWidth / 2);
+                                        const scaleY = 1 + Math.abs(deltaY) / (buttons[i].offsetHeight / 2);
 
-                if (dd < 10) dd = '0' + dd;
-                if (mm < 10) mm = '0' + mm;
+                                        const max_scale_x = 2;
+                                        const max_scale_y = 2;
 
-                let formattedToday = dd + '/' + mm + '/' + yyyy;
-                let time = h+":"+min+":"+sec; 
-                let tz = -(new Date().getTimezoneOffset() / 60);
-                if(tz>0){
-                    tz = "+" + tz;
-                }
-                tz = "UTC" + tz;
-                document.getElementById('date').innerHTML=formattedToday;
-                document.getElementById('time').innerHTML=time;
-                document.getElementById('zone').innerHTML=tz;
-                </script>
+                                        console.log(scaleX, scaleY);
 
+                                        //scaleX = Math.min(max_scale_x, scaleX);
+                                        //scaleY = Math.min(max_scale_y, scaleY);
+                                        
+                                        buttons[i].style.transform = `scale(${Math.min(max_scale_x, scaleX)}, ${Math.min(max_scale_y, scaleY)})`;
+                                        });
 
-        </div>
-        <div id="subheader">
-            <div class="cart">
-                {%if user.is_authenticated%}
-                {% with total_items=cart|length %}
-                    {% if cart|length > 0 %}
-                        Your cart:
-                        <a href="{% url 'cart:cart_detail' %}">
-                            {{ total_items }} item{{ total_items|pluralize }},
-                            ${{ cart.get_total_price }}
-                        </a>
-                    {% else %}
-                        Your cart is empty.
-                    {% endif %}
-                {% endwith %}
-                {%endif%}
-                {% if user.is_authenticated %}
-                        |{{ user.username }}|
-                        <a href="{% url 'login:logout' %}">Out</a>
-                        {% else %}
-                        <a href="{% url 'login:login' %}">Sign up</a>
-                        <a href="{% url 'login:register' %}">Sign in</a>
-                        {% endif %}
+                                        buttons[i].addEventListener("mouseleave", () => {
+                                            buttons[i].style.transform = "scale(1, 1)";
+                                        });
+                                }
+                            </script>
+                    </div>
+                </nav>
+                <a href="/" class="logo">My shop</a>
+                <div>
+                Current Date <span id='date'></span>.
+                Current time <span id='time'></span>
+                Current time zone <span id='zone'></span>
             </div>
-        </div>
+                <script>
+                    const today = new Date();
+                    const yyyy = today.getFullYear();
+                    let mm = today.getMonth() + 1;
+                    let dd = today.getDate();
+                    let h = today.getHours();
+                    if (h<10)
+                        h = '0' + h;
+                    let min = today.getMinutes();
+                    if (min < 10)
+                        min = '0' + min;
+                    let sec = today.getSeconds();
+                    if (sec < 10)
+                        sec = '0' + sec;
+    
+                    if (dd < 10) dd = '0' + dd;
+                    if (mm < 10) mm = '0' + mm;
+    
+                    let formattedToday = dd + '/' + mm + '/' + yyyy;
+                    let time = h+":"+min+":"+sec; 
+                    let tz = -(new Date().getTimezoneOffset() / 60);
+                    if(tz>0){
+                        tz = "+" + tz;
+                    }
+                    tz = "UTC" + tz;
+                    document.getElementById('date').innerHTML=formattedToday;
+                    document.getElementById('time').innerHTML=time;
+                    document.getElementById('zone').innerHTML=tz;
+                    </script>
+            </div>
+            <div  id="subheader"> <!--</div> -->
+                <div class="cart">
+                    {%if user.is_authenticated%}
+                    {% with total_items=cart|length %}
+                        {% if cart|length > 0 %}
+                            Your cart:
+                            <a href="{% url 'cart:cart_detail' %}">
+                                {{ total_items }} item{{ total_items|pluralize }},
+                                ${{ cart.get_total_price }}
+                            </a>
+                        {% else %}
+                            Your cart is empty.
+                        {% endif %}
+                    {% endwith %}
+                    {%endif%}
+                    {% if user.is_authenticated %}
+                            |{{ user.username }}|
+                            <a href="{% url 'login:logout' %}">Out</a>
+                            {% else %}
+                            <a href="{% url 'login:login' %}">Sign up</a>
+                            <a href="{% url 'login:register' %}">Sign in</a>
+                            {% endif %}
+                </div>
+            </div>
+        </header>
         <div id="content">
             {% block content %}
             {% endblock %}
@@ -81,24 +132,15 @@
         <aside>
             <nav>
                 <br>
-                <a href="/main/">Главная&nbsp;</a>
-                <a href="/vacancies/">Вакансии&nbsp;</a>
-                <a href="/coupons/">Купоны&nbsp;</a>
-                <a href="/articles/">Статьи&nbsp;</a>
+                
                 <br>
             </nav>
         </aside>
-        <nav>
-            <br>
-            <a href="/about/">О компании&nbsp;</a>
-            <a href="/faq/">Вопросы&nbsp;</a>
-            <a href="/workers/">Наши работники&nbsp;</a>
-            <a href="/privacy/">Политика конфеденциальности&nbsp;</a>
-        </nav>
+        
         {% if user.is_staff%}
         
         {% endif %}
-        <a href="/comments/">Комментарии</a>
+
         
     </tail>
 </html>
