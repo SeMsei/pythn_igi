@@ -18,6 +18,7 @@
             document.getElementById("stock").innerText = txt;
 
             function checkAvailability() {
+                out_price = 0;
                 var full_order = document.getElementById("orderInput").value;
                 console.log(full_order);
                 orders = full_order.split('\n');
@@ -34,7 +35,18 @@
                         if (tmp == null) {
                             is_ok = false;
                             error_message = "Неверный ввод";
+                            return;
                         } 
+
+                        console.log(tmp);
+
+                        if (tmp.length == 1) {
+                            is_ok = false;
+                            error_message = "Неверный ввод";
+                            return;
+                        }
+
+                        console.log(is_ok);
 
                         item = order.split(', ')[0];
                         num = order.split(', ')[1];

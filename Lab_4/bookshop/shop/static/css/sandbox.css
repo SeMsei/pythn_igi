@@ -359,3 +359,18 @@ table {
   .navigation.active .menuToggle::after {
     transform: translateY(0px) rotate(-45deg);
   }
+
+  button {
+    background-color: #3a2e2e;
+    
+  }
+
+  input:not(#birthdateInput)  {
+    background-color: #3a2e2e;
+  }
+
+  
+
+  input[type="submit"]:not(#birthdateInput) {
+    background-color: #3a2e2e;
+  }
