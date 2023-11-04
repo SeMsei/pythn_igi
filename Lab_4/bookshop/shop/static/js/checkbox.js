@@ -51,6 +51,11 @@ checkbox.addEventListener("change", function() {
   } else {
     div.style.display = "none";
   }
+
+  var tmp = document.getElementById('font-cont');
+  const inp = document.createElement('label');
+  inp.innerText = 'Font size';
+  tmp.appendChild(inp);
 });
 
 checkbox_bgcolor.addEventListener("change", function() {

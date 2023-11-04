@@ -10,6 +10,10 @@ function getRandomNumber() {
 
 // Генерация случайной квадратной таблицы
 function generateTable(size) {
+  if (size == -1) {
+    size = parseInt(document.getElementById('size').value);
+    console.log(size);
+  }
   table.innerHTML = "";
   selectedCells.clear();
   for (let i = 0; i < size; i++) {

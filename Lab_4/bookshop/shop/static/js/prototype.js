@@ -9,6 +9,10 @@ function Bookstore1(name, location) {
   Bookstore1.prototype.getInventory = function () {
     return this.inventory;
   };
+
+  Bookstore1.prototype.setInventory = function (inventory) {
+    this.inventory = inventory;
+  };
   
   // Метод для добавления книги в инвентарь
   Bookstore1.prototype.addBook = function (book) {

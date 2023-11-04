@@ -109,6 +109,8 @@
   <button onclick="addColumn()">Добавить колонку</button>
   <input type="number" id="maxSelection" placeholder="Макс. выбор ячеек">
   <button onclick="setMaxSelection()">Установить макс. выбор</button>
+  <input type="number" id="size" placeholder="Макс. выбор ячеек">
+  <button onclick="generateTable(-1)">Размер</button>
   <table id="myTable"></table>
         </div>
 
@@ -148,10 +150,10 @@
             <label for="font-color-r">Font color red </label>
             <input type="range" id="font-color-r" name="font-color-r" min="0" max="255" step="1" />
             <br>
-            <label for="font-color-g">Font color red </label>
+            <label for="font-color-g">Font color green </label>
             <input type="range" id="font-color-g" name="font-color-g" min="0" max="255" step="1" />
             <br>
-            <label for="font-color-b">Font color red </label>
+            <label for="font-color-b">Font color blue </label>
             <input type="range" id="font-color-b" name="font-color-b" min="0" max="255" step="1" />
         </div>
         <label id="2">
@@ -162,10 +164,10 @@
             <label for="bg-color-r">Bg color red </label>
             <input type="range" id="bg-color-r" name="bg-color-r" min="0" max="255" step="1" />
             <br>
-            <label for="bg-color-g">Bg color red </label>
+            <label for="bg-color-g">Bg color green </label>
             <input type="range" id="bg-color-g" name="bg-color-g" min="0" max="255" step="1" />
             <br>
-            <label for="bg-color-b">Bg color red </label>
+            <label for="bg-color-b">Bg color blue </label>
             <input type="range" id="bg-color-b" name="bg-color-b" min="0" max="255" step="1" />
         </div>
       <input type="submit">

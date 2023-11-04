@@ -10,6 +10,10 @@ class Bookstore {
     getInventory() {
       return this.inventory;
     }
+
+    setInventory(inventory) {
+      this.inventory = inventory;
+    }
   
     // Сеттер для добавления книг в инвентарь
     addBook(book) {
