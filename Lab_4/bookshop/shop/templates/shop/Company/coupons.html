@@ -50,5 +50,9 @@
         </ul>
     </section>
 </section>
+<script>
+    window.list = '{{active_js | safe}}'
+    window.inactive_list = '{{inactive_js | safe}}'
+    </script>
 <script src="{% static 'js/coupons.js' %}"></script>
 {% endblock %}

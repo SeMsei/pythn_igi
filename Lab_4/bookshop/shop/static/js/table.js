@@ -63,7 +63,6 @@ function toggleCellSelection(cell) {
         selectedCells.add(cell);
     }
   } else if (cell.classList.contains("selected") || cell.classList.contains("selected-even")) {
-    console.log("jopa");
     if (value % 2 == 0) {
       cell.classList.remove("selected-even");
     } else {

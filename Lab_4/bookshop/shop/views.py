@@ -199,8 +199,12 @@ def workers_list(request):
     return render(request, "shop/Company/workers.html", {"workers": workers})
 
 def coupons_list(request):
+    print(list(Coupon.objects.filter(active=True)))
+    active = json.dumps(list(Coupon.objects.filter(active=True)), default=lambda o: o.__dict__)
+    inactive = json.dumps(list(Coupon.objects.filter(active=False)), default=lambda o: o.__dict__)
     return render(request, "shop/Company/coupons.html", {"active_coupons": Coupon.objects.filter(active=True), 
-                                                        "disabled_coupons": Coupon.objects.filter(active=False)})
+                                                        "disabled_coupons": Coupon.objects.filter(active=False),
+                                                        "active_js":active, "inactive_js": inactive})
  
 def comment_create(request):
     if not request.user.is_authenticated:
