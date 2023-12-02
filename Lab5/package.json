@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "moment": "^2.29.4",
+    "react-helmet": "^6.1.0",
+    "react-scripts": "^5.0.1"
+  }
+}
