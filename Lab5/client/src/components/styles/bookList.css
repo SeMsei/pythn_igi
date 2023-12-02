@@ -1,0 +1,143 @@
+/* bookList.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffe4c4; /* Песочный цвет фона */
+    border: 2px solid #8b4513; /* Коричневая рамка */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.book-list-heading {
+    font-size: 28px; /* Увеличиваем размер шрифта заголовка */
+    margin-bottom: 10px;
+    color: #8b4513; /* Коричневый цвет текста заголовка */
+}
+
+.sort-buttons {
+    margin-bottom: 20px;
+}
+
+.sort-buttons button {
+    margin-right: 10px;
+    padding: 10px 15px; /* Увеличиваем отступы кнопки */
+    font-size: 16px; /* Увеличиваем размер шрифта кнопки */
+    cursor: pointer;
+    background-color: #8b4513; /* Коричневый цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.sort-buttons button:hover {
+    background-color: #cd853f; /* Темно-оранжевый цвет при наведении на кнопку */
+}
+
+ 
+
+#genreSelect {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #f8f8f8;
+        border: 2px solid #555;
+        padding: 10px;
+        font-size: 16px;
+        font-family: 'Times New Roman', Times, serif;
+        color: #333;
+        width: 200px;
+        cursor: pointer;
+        border-radius: 10px;
+        position: relative;
+        outline: none;
+      }
+      
+      #genreSelect::after {
+        content: '\25BC';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: #555;
+        border-radius: 10px;
+      }
+      
+      #genreSelect option {
+        background-color: #f8f8f8;
+        color: #555;
+        font-size: 16px;
+        font-family: 'Times New Roman', Times, serif;
+        transition: background-color 0.3s ease;
+        border-radius: 10px; 
+      }
+      
+      #genreSelect option:hover {
+        background-color: #ddd;
+      }
+      
+      #genreSelect option:checked {
+        background-color: #ddd;
+      }
+      
+      #genreSelect option:checked {
+        font-weight: bold;
+        color: #333;
+      }
+      
+      
+  
+  
+
+
+.book-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.book-item {
+    flex: 0 0 calc(50% - 20px); /* Уменьшаем flex-basis до 50% с учетом отступов */
+    width: calc(50% - 20px); /* Задаем фиксированную ширину с учетом отступов */
+    border: 2px solid #8b4513;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.book-image {
+    width: 150px;
+    height: 100px;
+    border-radius: 4px;
+}
+
+.book-link {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.book-link:hover {
+    color: #9b0a0a; /* Красный цвет текста при наведении */
+}
+
+.book-details {
+    font-size: 20px; /* Увеличиваем размер шрифта деталей книги */
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.book-cost {
+    font-size: 18px; /* Уменьшаем размер шрифта цены книги */
+    color: #555;
+    margin: 0;
+}
+
+.listBookCenter {
+    margin-left: 190px;
+    margin-right: -190px;
+}

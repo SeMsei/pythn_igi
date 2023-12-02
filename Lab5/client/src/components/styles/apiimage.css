@@ -1,0 +1,12 @@
+#api-image {
+    margin-top: 10px;
+    margin-left: 50px;
+    box-shadow: 1px 4px 18px rgb(0, 0, 0);
+    box-sizing: border-box;
+    margin-left: 5px;
+    border-radius: 15px;
+}
+
+.container-image {
+    margin-left: 125px;
+}

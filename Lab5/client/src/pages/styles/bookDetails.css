@@ -1,0 +1,47 @@
+.containerr {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #8B4513; /* Цвет фона в ретро-стиле */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-imagee {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-detailsss {
+    font-size: 24px;
+    line-height: 1.5;
+    background-color: #CD853F; /* Цвет фона в ретро-стиле */
+    color: #fff; /* Белый цвет текста */
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.book-detailsss p {
+    padding-left: 10px;
+}
+
+.book-detailsss:hover {
+    background-color: #FFE4C4; /* Цвет фона при наведении в ретро-стиле */
+    color: #CD853F; /* Белый цвет текста при наведении */
+}
+
+.book-detailss {
+    background-color: #CD853F; /* Цвет фона в ретро-стиле */
+    color: #FFE4C4; /* Красный цвет текста */
+}
+
+.book-detailss:hover {
+    background-color: #FFE4C4; /* Цвет фона в ретро-стиле */
+    color: #CD853F; /* Красный цвет текста */
+    margin-right: 10px;
+    padding-right: 10px;
+}
+

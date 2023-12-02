@@ -1,0 +1,23 @@
+/* AddBookForm.css (предполагая, что это имя файла) */
+
+.add-book-link {
+    display: inline-block;
+    width: 10%;
+    padding: 10px 20px;
+    color: #FFE4AB;
+    border: 4px solid rgba(150, 110, 82, 0.432); /* Коричневая рамка */
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    margin: auto; 
+    display: block; 
+    background-color: #CD853F;
+    box-shadow: 1px 4px 18px rgb(0, 0, 0);
+}
+
+.add-book-link:hover {
+    background-color: #FFE4AB;
+    color: #CD853F;
+}
