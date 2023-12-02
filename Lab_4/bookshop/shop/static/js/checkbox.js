@@ -47,15 +47,27 @@ form.addEventListener("submit", (e) => {
 // Add an event listener to the checkbox
 checkbox.addEventListener("change", function() {
   if (checkbox.checked) {
-    div.style.display = "block";
-  } else {
-    div.style.display = "none";
-  }
-
-  var tmp = document.getElementById('font-cont');
+    var tmp = document.getElementById('font-cont');
   const inp = document.createElement('label');
   inp.innerText = 'Font size';
   tmp.appendChild(inp);
+    div.style.display = "block";
+    var slider = document.createElement('input');
+    slider.id = "font-size";
+    slider.type = 'range';
+    slider.min = 12;
+    slider.max = 24;
+    slider.step = 1;
+    tmp.appendChild(slider);
+  } else {
+    div.style.display = "none";
+    var tmp = document.getElementById('font-cont');
+    while (tmp.firstChild) {
+      tmp.removeChild(tmp.firstChild);
+  }
+  }
+
+  
 });
 
 checkbox_bgcolor.addEventListener("change", function() {
