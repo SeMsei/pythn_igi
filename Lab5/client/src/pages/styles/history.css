@@ -1,0 +1,48 @@
+/* CompanyHistory.css (предполагая, что это имя файла) */
+
+body {
+    background-color: #ffe4c4; /* Песочный цвет фона страницы */
+}
+
+.company-history {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px; /* Максимальная ширина блока */
+    background-color: #fff; /* Белый цвет фона блока */
+    border: 2px solid #8b4513; /* Коричневая рамка блока */
+    border-radius: 8px;
+    padding: 20px;
+    list-style: none;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Тень блока */
+}
+
+/* Стили для элемента списка событий */
+.company-history-item {
+    border-left: 4px solid #8b4513; /* Коричневая линия слева для каждого элемента */
+    margin-bottom: 20px;
+    padding-left: 20px;
+    background-color: #ffe4c433; /* Песочный цвет фона элемента */
+}
+
+.company-history-item:last-child {
+    margin-bottom: 0; /* Убираем отступ снизу для последнего элемента */
+    border-bottom-left-radius: 10px;
+}
+
+.company-history-item:first-child {
+    border-top-left-radius: 10px;
+}
+
+/* Стили для заголовка (года) */
+.company-history-year {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b4513; /* Коричневый цвет текста года */
+}
+
+/* Стили для описания события */
+.company-history-description {
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333; /* Черный цвет текста описания */
+}

@@ -1,0 +1,25 @@
+.vacancies {
+    background-color: #ffe4c4; /* Песочный цвет фона */
+    border: 2px solid #8b4513; /* Коричневая рамка */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    clear: none;
+}
+
+.vacancy_name {
+    float: left;
+    margin-right: 15px;
+    color: #8b4513; /* Коричневый цвет текста */
+}
+
+.vacancy_description {
+    clear: right;
+    color: #333; /* Черный цвет текста */
+}
+
+.vacancy_salary {
+    clear: both;
+    color: #555; /* Темно-серый цвет текста */
+}

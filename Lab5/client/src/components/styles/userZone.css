@@ -1,0 +1,157 @@
+/* Общие ретро-стили */
+body {
+    font-family: 'Courier New', monospace; /* Используем моноширинный шрифт для ретро-стиля */
+    margin: 0;
+    padding: 0;
+    background-color: #d3d3d3; /* Светло-серый цвет фона */
+}
+
+.containerheader {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #8b4513;
+}
+
+.time-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    height: 150px;
+    box-shadow: 1px 4px 8px rgb(0, 0, 0);
+    text-align: center;
+    justify-content: center;
+}
+
+.time-info h2 {
+    margin-bottom: 10px;
+    margin-top: 50px;
+    font-size: 18px;
+    color: #8b4513; /* Коричневый цвет текста заголовка */
+}
+
+.time-info p {
+    margin-top: 50px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.time-info span {
+    font-weight: bold;
+    color: #000;
+}
+
+.time-info:before,
+.time-info:after {
+    content: '';
+    display: table;
+}
+
+.time-info:after {
+    clear: both;
+}
+
+.time-info {
+    zoom: 1;
+}
+
+.right-panel {
+    float: right;
+    margin-top: -25px;
+}
+
+.right-panel ul {
+    float: right;
+    display: flex;
+}
+
+.auth-buttons {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+.auth-buttons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.auth-buttons button {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #8b4513; /* Коричневый цвет фона кнопки */
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.auth-buttons button:hover {
+    background-color: #cd853f; /* Темно-оранжевый цвет при наведении на кнопку */
+}
+
+.auth-buttons a {
+    text-decoration: none;
+    color: #333;
+}
+
+.auth-buttons a:hover {
+    text-decoration: underline;
+}
+
+/* Стили для компонента Header */
+.header {
+    background-color: #8b4513;
+    color: #fff;
+}
+
+.header p {
+    margin: 0;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+/* Дополнительные стили для компонента Header */
+.user-greeting {
+    float: center;
+    margin-top: 20px;
+    color: #f0cbb2;
+}
+
+.user-greeting p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.containerheader{
+    display: flex;
+}
+
+.upperCont1{
+    flex: 0 0;
+}
+
+.upperCont2{
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Занимает всю высоту */
+}
+
+.upperCont21, .upperCont22{
+    box-shadow: 1px 4px 8px rgb(0, 0, 0);
+    flex: 1; /* Оба дива занимают равную часть высоты */
+    background-color: #8b4513;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-left: 5px;
+    border-radius: 10px;
+}
+
+.upperCont22{
+    margin-top: 5px;
+    padding-bottom: 5px;
+}

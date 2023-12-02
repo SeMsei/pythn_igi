@@ -1,0 +1,51 @@
+/* RegisterForm.css */
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #8b4513; /* Коричневая рамка */
+    border-radius: 8px;
+    background-color: #ffe4c4; /* Песочный цвет фона */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+    color: #ff0000; /* Красный цвет для сообщения об ошибке */
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #8b4513; /* Коричневый цвет текста метки */
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #8b4513; /* Коричневая рамка для инпута */
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #8b4513; /* Коричневый цвет кнопки */
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #cd853f; /* Темно-оранжевый цвет при наведении на кнопку */
+}
